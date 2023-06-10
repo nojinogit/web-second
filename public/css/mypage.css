@@ -3,6 +3,20 @@ img {
   height: auto;
 }
 
+#clock {
+  width: 40px;
+  height: auto;
+}
+
+#reserve-num{
+  margin-left: 25px;
+  font-weight: bold;
+}
+
+h1{
+  margin-left: 25px;
+}
+
 p{
   font-weight: bold;
 }
@@ -85,7 +99,7 @@ h2{
 }
 
 .reserve-confirmation{
-  background-color:rgba(0, 208, 255, 0.495);
+  background-color: rgb(0, 60, 255);
   border-radius: 5px;
   margin: 20px;
 }
