@@ -3,6 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ReserveController;
+use App\Http\Controllers\MyPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +27,11 @@ Route::get('/top', function () {
     return view('top');
 });
 
-Route::get('/',[IndexController::class,'index'])->name('index');
+Route::get('/',[ShopController::class,'index'])->name('index');
+Route::get('/detail/{id}',[ShopController::class,'detail'])->name('detail');
+Route::get('/search',[SearchController::class,'search'])->name('search');
+Route::post('/reserveAdd',[ReserveController::class,'reserveAdd'])->name('reserveAdd');
+Route::get('/myPage',[MyPageController::class,'myPage'])->name('myPage');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

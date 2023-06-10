@@ -13,9 +13,47 @@ button{
   cursor: pointer;
 }
 
+.search{
+  max-width: 1500px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.search-area{
+  padding: 5px;
+  margin: 0 auto;
+  width: 50%;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 2px 2px 4px;
+}
+
+.search-area input{
+  border: none;
+  height: 30px;
+  width: 50%;
+  outline: none;
+}
+
+.search-area select {
+  border: none;
+  height: 30px;
+  width: 50%;
+  outline: none;
+}
+
+#category{
+  border-right: 1px solid gainsboro;
+  width: 20%;
+}
+
+#area {
+  border-right: 1px solid gainsboro;
+  width: 20%;
+}
+
 .flex__item {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
 }
 
@@ -31,7 +69,7 @@ button{
 
 .store-wrap__item {
   width: 23%;
-  margin:5px;
+  margin:10px;
   display: block;
   box-shadow: 10px 10px 15px -10px;
   border-radius:15px;
@@ -41,6 +79,12 @@ button{
   background: #fff;
   border-radius: 0 0 15px 15px;
   padding: 20px;
+}
+
+.store-wrap__item-bottom{
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .store-wrap__item-eyecatch {

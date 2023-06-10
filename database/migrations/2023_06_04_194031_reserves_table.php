@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('reserves', function (Blueprint $table) {
         $table->id();
         $table->foreignId('user_id')->constrained('users');
-        $table->foreignId('store_id')->constrained('stores');
-        $table->datetime('date');
-        $table->datetime('cancel')->nullable();
+        $table->foreignId('shop_id')->constrained('shops');
+        $table->date('date');
+        $table->time('time');
+        $table->integer('hc');
+        $table->softDeletes();
         $table->timestamps();
         });
     }

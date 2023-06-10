@@ -1,0 +1,113 @@
+img {
+  width: 100%;
+  height: auto;
+}
+
+p{
+  font-weight: bold;
+}
+
+.flex__item {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.container {
+  max-width: 1500px;
+  margin: 100px auto;
+}
+
+.store-wrap {
+  margin-top: 20px;
+}
+
+.store-wrap__item {
+  width: 45%;
+  margin:5px;
+  display: block;
+}
+
+.store-wrap__item-content {
+  padding: 20px;
+}
+
+.store-wrap__item-content-tag {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  display: inline;
+}
+
+.reserve {
+  width: 45%;
+  margin:5px;
+  display: block;
+  background-color:rgb(0, 60, 255);
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 2px 2px 4px;
+}
+
+.reserve-input{
+  padding: 20px;
+}
+
+h2{
+  color: white;
+  padding: 20px 0 0 20px;
+}
+
+#input-date {
+  height: 40px;
+  width: 20%;
+}
+
+#input-date {
+  height: 40px;
+  width: 30%;
+  border-radius: 5px;
+  border: none;
+}
+
+#input-time {
+  height: 40px;
+  width: 90%;
+  border-radius: 5px;
+  border: none;
+}
+
+#input-number {
+  height: 40px;
+  width: 90%;
+  border-radius: 5px;
+  border: none;
+}
+
+.reserve-confirmation{
+  background-color:rgba(0, 208, 255, 0.495);
+  border-radius: 5px;
+  margin: 20px;
+}
+
+.reserve-confirmation-area{
+  padding: 20px;
+  color: white;
+}
+
+#button{
+  width: 100%;
+  color: white;
+  border: none;
+  background-color: rgb(0, 0, 255);
+  height: 60px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0px;
+  border-radius: 0 0 5px 5px;
+}
+
+.error{
+  list-style: none;
+  color:red;
+}
