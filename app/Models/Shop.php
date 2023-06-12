@@ -31,7 +31,7 @@ class Shop extends Model
         return $this->hasMany(Reserve::class);
     }
 
-    public function favorite(){
-        return $this->hasMany(Favorite::class);
+    public function favorites(){
+        return $this->belongsToMany(Favorite::class);
     }
 }

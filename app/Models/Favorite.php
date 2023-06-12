@@ -11,11 +11,11 @@ class Favorite extends Model
 
     protected $fillable = ['user_id','shop_id'];
 
-    public function user(){
-        return $this->hasMany(User::class);
+    public function users(){
+        return $this->belongsToMany(User::class);
     }
 
-    public function shop(){
-        return $this->hasMany(Shop::class);
+    public function shops(){
+        return $this->belongsToMany(Shop::class);
     }
 }
