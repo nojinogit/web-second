@@ -30,7 +30,9 @@
                 <form action="/reserveAdd" method="post">
                         @csrf
                     <div class="reserve-input">
+                        @auth
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                        @endauth
                         <input type="hidden" name="shop_id" value="{{$shop->id}}">
                         <p><input type="date" name="date" id="input-date" value="{{ old('date') }}"></p>
                         <p><input type="time" name="time" id="input-time" value="{{ old('time') }}"></p>
@@ -44,7 +46,11 @@
                             <p><label for="">number</label>&emsp;<span id="output-number">{{ old('hc') }}</span></p>
                         </div>
                     </div>
-                    <button type="submit" id="button">予約する</button>
+                    <button type="submit" id="button">
+                        @auth予約する
+                        @else予約にはログインが必要です
+                        @endauth
+                    </button>
                 </form>
                 @if (count($errors) > 0)
                 <ul class="error">

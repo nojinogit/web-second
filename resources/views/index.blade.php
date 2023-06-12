@@ -23,6 +23,9 @@
                 @endforeach
             </select>
             <input type="search" placeholder="Search" id="search"  name="name">
+            @auth
+            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+            @endauth
             <button>search</button>
             </form>
         </div>
@@ -42,9 +45,33 @@
                         <form action="/detail/{{$shop->id}}" method="get" name="id">
                             <button class="detail">詳しく見る</button>
                         </form>
-                        <button type="submit">
-                            <img src="{{ asset('svg/glay.svg')}}" alt="お気に入り" class="heart">
-                        </button>
+                        @auth
+                                @php
+                                $favorite=0;
+                                if(!empty(App\Models\Favorite::where('user_id',Illuminate\Support\Facades\Auth::user()->id)->where('shop_id',$shop->id)->first())){
+                                    $favorite++;
+                                }
+                                @endphp
+                                @if($favorite==1)
+                                <form action="/favoriteDelete" method="post">
+                                    @csrf
+                                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                    <input type="hidden" name="shop_id" value="{{$shop->id}}">
+                                    <button type="submit">
+                                        <img src="{{ asset('svg/red.svg')}}" alt="お気に入り" class="heart">
+                                    </button>
+                                @else
+                                <form action="/favoriteStore" method="post">
+                                    @csrf
+                                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                    <input type="hidden" name="shop_id" value="{{$shop->id}}">
+                                    <button type="submit">
+                                        <img src="{{ asset('svg/glay.svg')}}" alt="お気に入り" class="heart">
+                                    </button>
+                                @endif
+                            @csrf
+                        </form>
+                        @endauth
                     </div>
                 </div>
             </div>

@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Shop;
+use App\Models\Favorite;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
     public function index(Request $request){
-
     $shops=Shop::all();
     $areas=Shop::select('area')->distinct()->get();
     $categories=Shop::select('category')->distinct()->get();

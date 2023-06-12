@@ -11,8 +11,13 @@ class ReserveController extends Controller
     public function reserveAdd(ReserveRequest $request){
 
         $reserve=$request->only(['user_id','shop_id','date','time','hc']);
-
         Reserve::create($reserve);
+        return redirect('/thanksReserve');
+    }
+
+    public function reserveDelete(Request $request){
+
+        Reserve::find($request->id)->delete();
         return redirect('/myPage');
     }
 }
