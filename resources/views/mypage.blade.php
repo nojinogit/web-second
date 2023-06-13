@@ -39,21 +39,21 @@
                 <div class="store-wrap-area">
                 @foreach($shops as $shop)
                     <div class="store-wrap__item" href="">
-                        <img src="{{$shop->image_name}}" alt="" class="store-wrap__item-eyecatch">
+                        <img src="{{$shop->shop->image_name}}" alt="" class="store-wrap__item-eyecatch">
                         <div class="store-wrap__item-content">
-                            <h2>{{$shop->name}}</h2>
+                            <h2>{{$shop->shop->name}}</h2>
                             <div>
-                                <p class="store-wrap__item-content-tag">#{{$shop->area}}</p>
-                                <p class="store-wrap__item-content-tag">#{{$shop->category}}</p>
+                                <p class="store-wrap__item-content-tag">#{{$shop->shop->area}}</p>
+                                <p class="store-wrap__item-content-tag">#{{$shop->shop->category}}</p>
                             </div>
                             <div class="store-wrap__item-bottom">
-                                <form action="/detail/{{$shop->id}}" method="get" name="id">
+                                <form action="/detail/{{$shop->shop->id}}" method="get" name="id">
                                     <button class="detail">詳しく見る</button>
                                 </form>
                                 <form action="/favoriteDeleteMyPage" method="post">
                                     @csrf
                                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                                    <input type="hidden" name="shop_id" value="{{$shop->id}}">
+                                    <input type="hidden" name="shop_id" value="{{$shop->shop->id}}">
                                     <button type="submit">
                                     <img src="{{ asset('svg/red.svg')}}" alt="お気に入り" class="heart">
                                     </button>
