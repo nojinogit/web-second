@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="{{asset('css/sanitize.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/layouts.css')}}"/>
     @yield('css')
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <header>
     <div class="header">
@@ -50,7 +51,6 @@
     <main>
     @yield('content')
     </main>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
     $(".nav_toggle").on("click", function () {
     $(".nav_toggle, .nav").toggleClass("show");

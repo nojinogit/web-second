@@ -44,7 +44,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/reserveDelete',[ReserveController::class,'reserveDelete'])->name('reserveDelete');
     Route::post('/favoriteStore',[FavoriteController::class,'favoriteStore'])->name('favoriteStore');
     Route::post('/favoriteDelete',[FavoriteController::class,'favoriteDelete'])->name('favoriteDelete');
-    Route::post('/favoriteDeleteMyPage',[FavoriteController::class,'favoriteDeleteMyPage'])->name('favoriteDeleteMyPage');
 });
 
 require __DIR__.'/auth.php';

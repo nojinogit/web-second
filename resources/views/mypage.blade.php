@@ -38,7 +38,7 @@
                 <h2>お気に入り店舗</h2>
                 <div class="store-wrap-area">
                 @foreach($shops as $shop)
-                    <div class="store-wrap__item" href="">
+                    <div class="store-wrap__item delete{{$shop->shop->id}}" href="">
                         <img src="{{$shop->shop->image_name}}" alt="" class="store-wrap__item-eyecatch">
                         <div class="store-wrap__item-content">
                             <h2>{{$shop->shop->name}}</h2>
@@ -50,7 +50,7 @@
                                 <form action="/detail/{{$shop->shop->id}}" method="get" name="id">
                                     <button class="detail">詳しく見る</button>
                                 </form>
-                                <form action="/favoriteDeleteMyPage" method="post">
+                                <form class="favoriteDelete">
                                     @csrf
                                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                     <input type="hidden" name="shop_id" value="{{$shop->shop->id}}">
@@ -67,9 +67,25 @@
         </div>
     </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-    
-</script>
+    <script>
+        $.ajaxSetup({
+            headers: { 'X-CSRF-TOKEN': $("[name='csrf-token']").attr("content") },
+        })
+        $('.favoriteDelete').on('submit', function(event){
+            event.preventDefault();
+            const user_id=$(this).find('input[name="user_id"]').val();
+            const shop_id=$(this).find('input[name="shop_id"]').val();
+            $.ajax({
+                url: "{{ route('favoriteDelete') }}",
+                method: "POST",
+                data: {user_id:user_id,shop_id:shop_id},
+                dataType: "json",
+            }).done(function(res){
+                $('.delete'+res.shop_id).addClass('none');
+            }).faile(function(){
+                alert('通信の失敗をしました');
+            });
+        });
+    </script>
 
 @endsection

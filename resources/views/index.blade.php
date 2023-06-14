@@ -48,29 +48,45 @@
                         @auth
                                 @php
                                 $favorite=0;
-                                if(!empty(App\Models\Favorite::where('user_id',Illuminate\Support\Facades\Auth::user()->id)->where('shop_id',$shop->id)->first())){
+                                if(!empty(App\Models\Favorite::where('user_id',Auth::user()->id)->where('shop_id',$shop->id)->first())){
                                     $favorite++;
                                 }
                                 @endphp
                                 @if($favorite==1)
-                                <form action="/favoriteDelete" method="post">
+                                <form class="favoriteDelete deleteOrigin{{$shop->id}}">
                                     @csrf
                                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                     <input type="hidden" name="shop_id" value="{{$shop->id}}">
                                     <button type="submit">
                                         <img src="{{ asset('svg/red.svg')}}" alt="お気に入り" class="heart">
                                     </button>
+                                </form>
                                 @else
-                                <form action="/favoriteStore" method="post">
+                                <form class="favoriteStore storeOrigin{{$shop->id}}">
                                     @csrf
                                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                     <input type="hidden" name="shop_id" value="{{$shop->id}}">
                                     <button type="submit">
                                         <img src="{{ asset('svg/glay.svg')}}" alt="お気に入り" class="heart">
                                     </button>
+                                </form>
                                 @endif
-                            @csrf
-                        </form>
+                                <form class="favoriteDelete delete{{$shop->id}} none">
+                                    @csrf
+                                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                    <input type="hidden" name="shop_id" value="{{$shop->id}}">
+                                    <button type="submit">
+                                        <img src="{{ asset('svg/red.svg')}}" alt="お気に入り" class="heart">
+                                    </button>
+                                </form>
+                                <form class="favoriteStore store{{$shop->id}} none">
+                                    @csrf
+                                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                    <input type="hidden" name="shop_id" value="{{$shop->id}}">
+                                    <button type="submit">
+                                        <img src="{{ asset('svg/glay.svg')}}" alt="お気に入り" class="heart">
+                                    </button>
+                                </form>
                         @endauth
                     </div>
                 </div>
@@ -78,4 +94,47 @@
             @endforeach
         </div>
     </div>
+        <script>
+        $.ajaxSetup({
+            headers: { 'X-CSRF-TOKEN': $("[name='csrf-token']").attr("content") },
+        })
+        $('.favoriteDelete').on('submit', function(event){
+            event.preventDefault();
+            const user_id=$(this).find('input[name="user_id"]').val();
+            const shop_id=$(this).find('input[name="shop_id"]').val();
+            $.ajax({
+                url: "{{ route('favoriteDelete') }}",
+                method: "POST",
+                data: {user_id:user_id,shop_id:shop_id},
+                dataType: "json",
+            }).done(function(res){
+                $('.deleteOrigin'+res.shop_id).addClass('none');
+                $('.delete'+res.shop_id).addClass('none');
+                $('.store'+res.shop_id).removeClass('none');
+            }).faile(function(){
+                alert('通信の失敗をしました');
+            });
+        });
+
+        $.ajaxSetup({
+            headers: { 'X-CSRF-TOKEN': $("[name='csrf-token']").attr("content") },
+        })
+        $('.favoriteStore').on('submit', function(event){
+            event.preventDefault();
+            const user_id=$(this).find('input[name="user_id"]').val();
+            const shop_id=$(this).find('input[name="shop_id"]').val();
+            $.ajax({
+                url: "{{ route('favoriteStore') }}",
+                method: "POST",
+                data: {user_id:user_id,shop_id:shop_id},
+                dataType: "json",
+            }).done(function(res){
+                $('.storeOrigin'+res.shop_id).addClass('none');
+                $('.store'+res.shop_id).addClass('none');
+                $('.delete'+res.shop_id).removeClass('none');
+            }).faile(function(){
+                alert('通信の失敗をしました');
+            });
+        });
+    </script>
 @endsection
