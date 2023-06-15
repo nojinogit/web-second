@@ -10,7 +10,7 @@
     <div class="container">
         <div  class="thanks">
             <h1>会員登録ありがとうございます</h1>
-            <a href="/">戻る</a>
+            <a href="/myPage">本人認証へ進む</a>
         </div>
     </div>
 @endsection
