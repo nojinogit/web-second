@@ -61,6 +61,30 @@ p{
 .reserve-confirmation-area-head form {
   display: inline-block;
   float: right;
+  margin-right: 1%;;
+}
+
+#input-date {
+  height: 40px;
+  width: 80%;
+  border-radius: 5px;
+  border: none;
+  margin-left: 5.5%;
+}
+
+#input-time {
+  height: 40px;
+  width: 80%;
+  border-radius: 5px;
+  border: none;
+  margin-left: 5.5%;
+}
+
+#input-number {
+  height: 40px;
+  width: 80%;
+  border-radius: 5px;
+  border: none;
 }
 
 .store-wrap {
@@ -106,7 +130,24 @@ p{
   justify-content: space-between;
 }
 
-#cancel-button{
+#button{
+  background-color: rgb(0, 60, 255);
+  border: 2px solid white;
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  display: block;
+  float: right;
+}
+
+.confirm-button-area{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#confirm-button{
+  width: 15%;
   background-color: rgb(0, 60, 255);
   border: 2px solid white;
   border-radius: 3px;
@@ -132,6 +173,11 @@ button {
   background-color: blue;
   color: white;
   border-radius: 5px;
+}
+
+.error {
+  list-style: none;
+  color: white;
 }
 
 .none{

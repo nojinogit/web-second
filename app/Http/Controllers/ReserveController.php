@@ -20,4 +20,11 @@ class ReserveController extends Controller
         Reserve::find($request->id)->delete();
         return redirect('/myPage');
     }
+
+    public function reserveUpdate(ReserveRequest $request){
+
+        $reserve=$request->only(['date','time','hc']);
+        Reserve::find($request->id)->update($reserve);
+        return redirect('/myPage');
+    }
 }

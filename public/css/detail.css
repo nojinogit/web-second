@@ -60,11 +60,6 @@ h2{
 
 #input-date {
   height: 40px;
-  width: 20%;
-}
-
-#input-date {
-  height: 40px;
   width: 30%;
   border-radius: 5px;
   border: none;
@@ -107,7 +102,8 @@ h2{
   border-radius: 0 0 5px 5px;
 }
 
+
 .error{
   list-style: none;
-  color:red;
+  color:white;
 }

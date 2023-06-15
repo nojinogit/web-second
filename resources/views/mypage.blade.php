@@ -15,20 +15,48 @@
                 <div class="reserve-wrap__item" href="">
                     @foreach($reserves as $reserve)
                         <div class="reserve-confirmation">
-                            <div class="reserve-confirmation-area">
+                            <div class="reserve-confirmation-area  {{$reserve->id}}">
                                 <div class="reserve-confirmation-area-head">
                                     <img src="{{ asset('svg/時計.svg')}}" alt="" id="clock">
                                     <span id="reserve-num">予約{{$loop->iteration}}</span>
                                     <form action="/reserveDelete" method="post">
                                         @csrf
                                         <input type="hidden" value="{{$reserve->id}}" name="id">
-                                        <button id="cancel-button" type="submit">予約取り消し</button>
+                                        <button id="button" type="submit">予約取り消し</button>
+                                    </form>
+                                    <form class="update-button">
+                                        <input type="hidden" value="{{$reserve->id}}" name="id">
+                                        <button id="button" type="submit">予約更新</button>
                                     </form>
                                 </div>
                                 <p><label for="">shop</label>&emsp;<span>{{$reserve->shop->name}}</span></p>
                                 <p><label for="">date</label>&emsp;<span id="output-date">{{$reserve->date}}</span></p>
                                 <p><label for="">time</label>&emsp;<span id="output-time">{{$reserve->time}}</span></p>
                                 <p><label for="">number</label>&emsp;<span id="output-number">{{$reserve->hc}}</span></p>
+                            </div>
+                            <div class="reserve-confirmation-area {{$reserve->id}} none">
+                                <div class="reserve-confirmation-area-head">
+                                    <img src="{{ asset('svg/時計.svg')}}" alt="" id="clock">
+                                    <span id="reserve-num">予約{{$loop->iteration}}</span>
+                                    <form class="cancel-button">
+                                        <input type="hidden" value="{{$reserve->id}}" name="id">
+                                        <button id="button" type="submit">キャンセル</button>
+                                    </form>
+                                </div>
+                                <form action="/reserveUpdate" method="post">
+                                    @csrf
+                                    <input type="hidden" value="{{$reserve->id}}" name="id">
+                                    <p><label for="">shop</label>&emsp;<span>{{$reserve->shop->name}}</span></p>
+                                    <p><label for="">date</label>&emsp;<input type="date" name="date" id="input-date" value="{{$reserve->date}}"></p>
+                                    <p><label for="">time</label>&emsp;<input type="time" name="time" id="input-time" value="{{$reserve->time}}"></p>
+                                    <p><label for="">number</label>&emsp;<input type="number" max="10" min="1" name="hc" id="input-number" value="{{$reserve->hc}}"></p>
+                                    <div class="confirm-button-area">
+                                        <button id="confirm-button" type="submit">確定</button>
+                                    </div>
+                                    @foreach ($errors->all() as $error)
+                                    <li class="error">{{$error}}</li>
+                                    @endforeach
+                                </form>
                             </div>
                         </div>
                     @endforeach
@@ -86,6 +114,23 @@
                 alert('通信の失敗をしました');
             });
         });
+
+        $(function() {
+            $('.update-button').on('submit', function(event){
+            event.preventDefault();
+            const reserve_id=$(this).find('input[name="id"]').val();
+            $('.'+reserve_id).toggleClass('none');
+            });
+            });
+
+        $(function() {
+            $('.cancel-button').on('submit', function(event){
+            event.preventDefault();
+            const reserve_id=$(this).find('input[name="id"]').val();
+            $('.'+reserve_id).toggleClass('none');
+            });
+            });
+            
     </script>
 
 @endsection

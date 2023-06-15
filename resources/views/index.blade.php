@@ -10,13 +10,13 @@
     <div class="search">
         <div class="search-area">
             <form action="/search" method="get">
-            <select value="all area" id="area" name="area" onchange="this.form.submit()">
+            <select value="all area" id="area" name="area" <!--onchange="this.form.submit()"-->>
                 <option value="">all area</option>
                 @foreach($areas as $area)
                 <option value="{{$area->area}}">{{$area->area}}</option>
                 @endforeach
             </select>
-            <select value="all genre" id="category"  name="category" onchange="this.form.submit()">
+            <select value="all genre" id="category"  name="category" <!--onchange="this.form.submit()"-->>
                 <option value="">all genre</option>
                 @foreach($categories as $category)
                 <option value="{{$category->category}}">{{$category->category}}</option>
