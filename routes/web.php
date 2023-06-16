@@ -8,6 +8,8 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +47,14 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post('/reserveUpdate',[ReserveController::class,'reserveUpdate'])->name('reserveUpdate');
     Route::post('/favoriteStore',[FavoriteController::class,'favoriteStore'])->name('favoriteStore');
     Route::post('/favoriteDelete',[FavoriteController::class,'favoriteDelete'])->name('favoriteDelete');
+});
+
+Route::group(['middleware' => ['auth', 'can:admin_only']], function () {
+    Route::get('accountIndex', [AccountController::class,'accountIndex'])->name('accountIndex');
+});
+
+Route::group(['middleware' => ['auth', 'can:manager_admin']], function () {
+    Route::get('managementIndex', [ManagementController::class,'managementIndex'])->name('managementIndex');
 });
 
 require __DIR__.'/auth.php';

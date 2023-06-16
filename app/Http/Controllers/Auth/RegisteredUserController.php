@@ -46,7 +46,10 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect('/thanksRegister');
+        if(Auth::user()->role > 99){
+            return redirect('/accountIndex')->with('message', 'アカウントを作成しました');
+            }else{
+            return redirect('/thanksRegister');}
 
         //return redirect(RouteServiceProvider::HOME);//
     }

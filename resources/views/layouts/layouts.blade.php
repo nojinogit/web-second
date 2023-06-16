@@ -33,6 +33,12 @@
                             </x-dropdown-link>
                     </form>
                 </li>
+                @if(Auth::user()->role > 9)
+                <li class="nav_menu_li"><a href="/managementIndex">マネジメント画面</a></li>
+                @endif
+                @if(Auth::user()->role > 99)
+                <li class="nav_menu_li"><a href="/accountIndex">アカウント画面</a></li>
+                @endif
             </ul>
         </nav>
         @else
