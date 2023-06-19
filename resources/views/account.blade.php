@@ -11,104 +11,242 @@
 <main class="main">
     <div>
         <h1>
-            管理システム
+            アカウント管理
         </h1>
     </div>
     <div class="main__search">
-        <form action="/search" method="get">
-        @csrf
-        <div class="main__search--step">
-            <div class="main__search--step-name">
-                <div class="main__search--step-title">
-                    お名前
-                </div>
-                <div  class="main__search--step-input">
-                    <input name="fullname">
-                </div>
+        <h2>アカウント検索</h2>
+        <form action="/accountSearch" method="get">
+            <div class="main__search--step">
+                    <div class="main__search--step-title">
+                        お名前
+                    </div>
+                    <div  class="main__search--step-input">
+                        <input type="text" name="name">
+                    </div>
+                    <div class="main__search--step-title">
+                        メールアドレス
+                    </div>
+                    <div class="main__search--step-input">
+                        <input type="email" name="email">
+                    </div>
+                    <div class="main__search--step-title">
+                        権限
+                    </div>
+                    <div class="main__search--step-input">
+                        <select value="権限を選択してください" name="role">
+                            <option value="">全権限</option>
+                            <option value="100">管理者</option>
+                            <option value="10">店舗代表者</option>
+                            <option value="1">一般ユーザ</option>
+                        </select>
+                    </div>
             </div>
-            <div class="main__search--step-gender">
-                <div class="main__search--step-title-gender">
-                    性別
-                </div>
-                <div  class="main__search--step-button">
-                    <input type="radio" name="gender" value="" checked>全て
-                    <input type="radio" name="gender" value="1">男性
-                    <input type="radio" name="gender" value="2">女性
-                </div>
+            <div class="main__search--submit">
+                <input type="submit" value="検索">
             </div>
-        </div>
-        <div class="main__search--step">
-            <div class="main__search--step-title">
-                登録日
-            </div>
-            <div class="main__search--step-input-day">
-                <input type="date" name="startDate">
-                <div class="to">～</div>
-                <input type="date" name="endDate">
-            </div>
-        </div>
-        <div class="main__search--step">
-            <div class="main__search--step-title">
-                メールアドレス
-            </div>
-            <div class="main__search--step-input">
-                <input  name="email">
-            </div>
-        </div>
-        <div class="main__search--submit">
-            <input type="submit" value="検索">
-        </div>
-        <div>
-            <button type="reset" class="main__search--reset">リセット</button>
-        </div>
         </form>
     </div>
 
-    @isset($contacts)
-    <div class="main__search--paginate">
+    @isset($accounts)
+    <div class="main__add--table">
+        <h2>アカウント一覧</h2>
         <div>
-            <p>全{{ $contacts->total() }}中
-            {{  ($contacts->currentPage() -1) * $contacts->perPage() + 1}} ~
-            {{ (($contacts->currentPage() -1) * $contacts->perPage() + 1) + (count($contacts) -1)  }}件</p>
-        </div>
-        <div>
-            {{$contacts->appends(request()->query())->links()}}
-        </div>
-    </div>
-    <div class="main__search--table">
+            <div id="time"></div>
+                @if(session('message'))
+                <div class="message">
+                    <div class="message__success">
+                        <p class="message__success--p" id="session" style="color:blue;">{{session('message')}}</p>
+                    </div>
+                </div>
+                @endif
+            </div>
         <table>
-            <tr class="main__search--table-title">
-                <th>ID</th>
+            <tr class="main__add--table-title">
                 <th>お名前</th>
-                <th>性別</th>
                 <th>メールアドレス</th>
-                <th>ご意見</th>
+                <th>権限</th>
             </tr>
-            @foreach($contacts as $contact)
+            @foreach($accounts as $account)
             <tr>
-                <form action="/delete" method="post">
+                <form  method="POST" action="accountDelete">
                     @csrf
-                    @method('DELETE')
-                    <td>{{$contact['id']}}</td>
-                    <td>{{$contact['fullname']}}</td>
+                    <input type="hidden" name="id" value="{{$account->id}}">
+                    <td>{{$account->name}}</td>
+                    <td>{{$account->email}}</td>
                     <td>
-                        @if($contact['gender']==1){{'男性'}}
-                        @elseif($contact['gender']==2){{'女性'}}
+                        @if($account->role==100)
+                        管理者
+                        @elseif($account->role==10)
+                        店舗代表者
+                        @elseif($account->role==1)
+                        一般ユーザ
                         @endif
                     </td>
-                    <td>{{$contact['email']}}</td>
-                    <td class="opinion">
-                        <span class="opinion-limit">{{$contact['opinion']}}</span>
-                        <span class="opinion-origin none">{{$contact['opinion']}}</span>
-                    </td>
-                    <input type="hidden" name="id" value="{{$contact['id']}}">
-                    <td><input type="submit" value="削除" id="delete__submit"></td>
+                    <td><button type="submit">削除</button></td>
                 </form>
             </tr>
             @endforeach
         </table>
     </div>
     @endisset
+
+
+    <div class="main__add--table">
+        <h2>アカウント設定</h2>
+        @if (count($errors) > 0)
+            <ul class="error">
+            @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+            </ul>
+        @endif
+        <div>
+            <div id="time"></div>
+                @if(session('message'))
+                <div class="message">
+                    <div class="message__success">
+                        <p class="message__success--p" id="session" style="color:blue;">{{session('message')}}</p>
+                    </div>
+                </div>
+                @endif
+            </div>
+        <table>
+            <tr class="main__add--table-title">
+                <th>お名前</th>
+                <th>メールアドレス</th>
+                <th>パスワード</th>
+                <th>パスワード再入力</th>
+                <th>権限</th>
+            </tr>
+            <tr>
+                <form  method="POST" action="{{ route('register') }}">
+                    @csrf
+                    <td><input type="text" name="name"  required autofocus autocomplete="name"></td>
+                    <td><input type="email" name="email" required autocomplete="username" ></td>
+                    <td><input type="password" name="password" required autocomplete="new-password" ></td>
+                    <td><input type="password" name="password_confirmation" required autocomplete="new-password"></td>
+                    <td>
+                        <select name="role">
+                        <option value="100">管理者</option>
+                        <option value="10">店舗代表者</option>
+                        <option value="1">一般ユーザ</option>
+                        </select>
+                    </td>
+                    <td><button type="submit">登録</button></td>
+                </form>
+            </tr>
+        </table>
+    </div>
+
+    <div class="main__search">
+        <h2>店舗代表者検索</h2>
+        <form action="/representativeSearch" method="get">
+            <div class="main__search--step">
+                    <div class="main__search--step-title">
+                        お名前
+                    </div>
+                    <div  class="main__search--step-input">
+                        <select name="user_id">
+                            <option value="">選択してください</option>
+                            @foreach($users as $user)
+                            <option value="{{$user->id}}">{{$user->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="main__search--step-title">
+                        店舗名
+                    </div>
+                    <div class="main__search--step-input">
+                        <select name="shop_id">
+                            <option value="">選択してください</option>
+                            @foreach($shops as $shop)
+                            <option value="{{$shop->id}}">{{$shop->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+            </div>
+            <div class="main__search--submit">
+                <input type="submit" value="検索">
+            </div>
+        </form>
+    </div>
+
+    @isset($representatives)
+    <div class="main__add--table">
+        <h2>店舗代表者一覧</h2>
+        <div>
+            <div id="time"></div>
+                @if(session('message'))
+                <div class="message">
+                    <div class="message__success">
+                        <p class="message__success--p" id="session" style="color:blue;">{{session('message')}}</p>
+                    </div>
+                </div>
+                @endif
+            </div>
+        <table>
+            <tr class="main__add--table-title">
+                <th>お名前</th>
+                <th>店舗名</th>
+            </tr>
+            @foreach($representatives as $representative)
+            <tr>
+                <form  method="POST" action="representativeDelete">
+                    @csrf
+                    <input type="hidden" name="id" value="{{$representative->id}}">
+                    <td>{{$representative->user->name}}</td>
+                    <td>{{$representative->shop->name}}</td>
+                    <td><button type="submit">削除</button></td>
+                </form>
+            </tr>
+            @endforeach
+        </table>
+    </div>
+    @endisset
+
+    <div class="main__add--table">
+        <h2>店舗代表者設定</h2>
+        @if(session('representativeFalse'))
+            <div class="message">
+                <p class="representativeMessage" id="session" style="color:red;">{{session('representativeFalse')}}</p>
+            </div>
+        @endif
+        @if(session('representativeSuccess'))
+            <div class="message">
+                <p class="representativeMessage" id="session" style="color:blue;">{{session('representativeSuccess')}}</p>
+            </div>
+        @endif
+        <div>
+        <table>
+            <tr class="main__add--table-title">
+                <th>お名前</th>
+                <th>店舗</th>
+            </tr>
+            <tr>
+                <form  method="POST" action="/representativeAdd">
+                    @csrf
+                    <td>
+                        <select name="user_id">
+                            <option value="">選択してください</option>
+                            @foreach($users as $user)
+                            <option value="{{$user->id}}">{{$user->name}}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td>
+                        <select name="shop_id">
+                            <option value="">選択してください</option>
+                            @foreach($shops as $shop)
+                            <option value="{{$shop->id}}">{{$shop->name}}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td><button type="submit">登録</button></td>
+                </form>
+            </tr>
+        </table>
+    </div>
 </main>
 
 

@@ -34,17 +34,20 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role' => ['integer'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role,
         ]);
 
         event(new Registered($user));
-
-        Auth::login($user);
+        
+        if(Auth::user()==null){
+            Auth::login($user);}
 
         if(Auth::user()->role > 99){
             return redirect('/accountIndex')->with('message', 'アカウントを作成しました');

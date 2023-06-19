@@ -20,4 +20,16 @@ class Reserve extends Model
     public function shop(){
         return $this->belongsTo(Shop::class);
     }
+
+    public function scopeStartDateSearch($query,$startDate){
+        if(!empty($startDate)){
+            $query->whereDate('date', '>=', $startDate);
+    }
+    }
+
+    public function scopeEndDateSearch($query,$endDate){
+        if(!empty($endDate)){
+            $query->whereDate('date', '<=', $endDate);
+        }
+    }
 }

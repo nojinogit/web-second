@@ -49,6 +49,28 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function favorites(){
-        return $this->belongsToMany(Favorite::class);
+        return $this->hasMany(Favorite::class);
+    }
+
+    public function representatives(){
+        return $this->hasMany(Representative::class);
+    }
+
+    public function scopeNameSearch($query,$name){
+        if(!empty($name)){
+            $query->where('name','like','%'.$name.'%');
+        }
+    }
+
+    public function scopeEmailSearch($query,$email){
+        if(!empty($email)){
+            $query->where('email',$email);
+        }
+    }
+
+    public function scopeRoleSearch($query,$role){
+        if(!empty($role)){
+            $query->where('role',$role);
+        }
     }
 }

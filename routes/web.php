@@ -10,6 +10,7 @@ use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ManagementController;
+use App\Http\Controllers\RepresentativeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,11 +51,19 @@ Route::middleware(['auth','verified'])->group(function () {
 });
 
 Route::group(['middleware' => ['auth', 'can:admin_only']], function () {
-    Route::get('accountIndex', [AccountController::class,'accountIndex'])->name('accountIndex');
+    Route::get('/accountIndex', [AccountController::class,'accountIndex'])->name('accountIndex');
+    Route::get('/accountSearch', [AccountController::class,'accountSearch'])->name('accountSearch');
+    Route::post('/accountDelete', [AccountController::class,'accountDelete'])->name('accountDelete');
+    Route::post('/representativeAdd', [RepresentativeController::class,'representativeAdd'])->name('representativeAdd');
+    Route::post('/representativeDelete', [RepresentativeController::class,'representativeDelete'])->name('representativeDelete');
+    Route::get('/representativeSearch', [RepresentativeController::class,'representativeSearch'])->name('representativeSearch');
 });
 
 Route::group(['middleware' => ['auth', 'can:manager_admin']], function () {
-    Route::get('managementIndex', [ManagementController::class,'managementIndex'])->name('managementIndex');
+    Route::get('/managementIndex', [ManagementController::class,'managementIndex'])->name('managementIndex');
+    Route::get('/representativeShop', [ManagementController::class,'representativeShop'])->name('representativeShop');
+    Route::get('/shopUpdate', [ManagementController::class,'shopUpdate'])->name('shopUpdate');
+    Route::get('/shopReserve', [ManagementController::class,'shopReserve'])->name('shopReserve');
 });
 
 require __DIR__.'/auth.php';

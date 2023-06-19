@@ -32,6 +32,10 @@ class Shop extends Model
     }
 
     public function favorites(){
-        return $this->belongsToMany(Favorite::class);
+        return $this->hasMany(Favorite::class);
+    }
+
+    public function representatives(){
+        return $this->hasMany(Representative::class);
     }
 }

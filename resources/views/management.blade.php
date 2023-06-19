@@ -11,131 +11,140 @@
 <main class="main">
     <div>
         <h1>
-            管理システム
+            マネジメント管理
         </h1>
     </div>
+
     <div class="main__search">
-        <form action="/search" method="get">
-        @csrf
-        <div class="main__search--step">
-            <div class="main__search--step-name">
-                <div class="main__search--step-title">
-                    お名前
-                </div>
-                <div  class="main__search--step-input">
-                    <input name="fullname">
-                </div>
-            </div>
-            <div class="main__search--step-gender">
-                <div class="main__search--step-title-gender">
-                    性別
-                </div>
-                <div  class="main__search--step-button">
-                    <input type="radio" name="gender" value="" checked>全て
-                    <input type="radio" name="gender" value="1">男性
-                    <input type="radio" name="gender" value="2">女性
-                </div>
-            </div>
-        </div>
-        <div class="main__search--step">
-            <div class="main__search--step-title">
-                登録日
-            </div>
-            <div class="main__search--step-input-day">
-                <input type="date" name="startDate">
-                <div class="to">～</div>
-                <input type="date" name="endDate">
-            </div>
-        </div>
-        <div class="main__search--step">
-            <div class="main__search--step-title">
-                メールアドレス
-            </div>
-            <div class="main__search--step-input">
-                <input  name="email">
-            </div>
-        </div>
-        <div class="main__search--submit">
-            <input type="submit" value="検索">
-        </div>
-        <div>
-            <button type="reset" class="main__search--reset">リセット</button>
-        </div>
-        </form>
+        <h2>代表店舗</h2>
+        <table class="main__search--table">
+            <tr>
+                <th>店舗名</th>
+                <th>店舗情報</th>
+                <th>予約状況</th>
+            </tr>
+            @foreach($shops as $shop)
+            <tr>
+                <td>{{$shop->shop->name}}</td>
+                <td>
+                    <form method="get" action="/shopUpdate">
+                        <input type="hidden" value="{{$shop->shop->id}}" name="id">
+                        <button type="submit">更新画面を開く</button>
+                    </form>
+                </td>
+                <td>
+                    <form  method="get" action="/shopReserve">
+                        <input type="hidden" name="id" value="{{$shop->shop->id}}">
+                        <div class="main__search--step-input-day">
+                            <input type="date" name="startDate">
+                            <div class="to">～</div>
+                            <input type="date" name="endDate">
+                            <button type="submit">検索</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </table>
     </div>
 
-    @isset($contacts)
-    <div class="main__search--paginate">
-        <div>
-            <p>全{{ $contacts->total() }}中
-            {{  ($contacts->currentPage() -1) * $contacts->perPage() + 1}} ~
-            {{ (($contacts->currentPage() -1) * $contacts->perPage() + 1) + (count($contacts) -1)  }}件</p>
-        </div>
-        <div>
-            {{$contacts->appends(request()->query())->links()}}
+    @isset($shopUpdate)
+    <div class="main__add--table">
+        <h2>店舗詳細</h2>
+        <div class="flex__item">
+            <div class="store-wrap__item" href="">
+                <h1>{{$shopUpdate->name}}</h1>
+                <img src="{{$shopUpdate->image_name}}" alt="" class="store-wrap__item-eyecatch">
+                <div class="store-wrap__item-content">
+                    <div>
+                        <p class="store-wrap__item-content-tag">#{{$shopUpdate->area}}</p>
+                        <p class="store-wrap__item-content-tag">#{{$shopUpdate->category}}</p>
+                    </div>
+                    <div class="flex__item store-wrap">
+                        <p>{{$shopUpdate->overview}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="store-wrap__item" href="">
+                <form action="">
+                    <p><label for="">店舗名</label>&emsp;<input type="text" name="name" value="{{$shopUpdate->name}}"></p>
+                    <p><label for="">都道府県</label>&emsp;<input type="text" name="area"  value="{{$shopUpdate->area}}"></p>
+                    <p><label for="">ジャンル</label>&emsp;<input type="text" name="category"  value="{{$shopUpdate->category}}"></p>
+                    <p>店舗概要&emsp;<textarea name="overview" cols="50" rows="8"  value="{{$shopUpdate->overview}}"></textarea></p>
+                    <button type="submit">更新</button>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="main__search--table">
+    @endisset
+
+    @isset($reserves)
+    <div class="main__search">
+        @foreach($reserves as $reserve)
+        <h2>{{$reserve->shop->name}}</h2>
+        @break
+        @endforeach
         <table>
-            <tr class="main__search--table-title">
-                <th>ID</th>
-                <th>お名前</th>
-                <th>性別</th>
-                <th>メールアドレス</th>
-                <th>ご意見</th>
-            </tr>
-            @foreach($contacts as $contact)
             <tr>
-                <form action="/delete" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <td>{{$contact['id']}}</td>
-                    <td>{{$contact['fullname']}}</td>
-                    <td>
-                        @if($contact['gender']==1){{'男性'}}
-                        @elseif($contact['gender']==2){{'女性'}}
-                        @endif
-                    </td>
-                    <td>{{$contact['email']}}</td>
-                    <td class="opinion">
-                        <span class="opinion-limit">{{$contact['opinion']}}</span>
-                        <span class="opinion-origin none">{{$contact['opinion']}}</span>
-                    </td>
-                    <input type="hidden" name="id" value="{{$contact['id']}}">
-                    <td><input type="submit" value="削除" id="delete__submit"></td>
-                </form>
+                <th>日付</th>
+                <th>時間</th>
+                <th>名前</th>
+                <th>人数</th>
+                <th>キャンセル</th>
+            </tr>
+            @foreach($reserves as $reserve)
+            <tr class="main__search--table">
+                <td>{{$reserve->date}}</td>
+                <td>{{$reserve->time}}</td>
+                <td>{{$reserve->user->name}}</td>
+                <td>{{$reserve->hc}}</td>
+                <td>{{$reserve->deleted_at}}</td>
             </tr>
             @endforeach
         </table>
     </div>
     @endisset
+
+    <div class="main__add--table">
+        <h2>新規店舗作成</h2>
+        <div>
+            <div id="time"></div>
+                @if(session('message'))
+                <div class="message">
+                    <div class="message__success">
+                        <p class="message__success--p" id="session" style="color:blue;">{{session('message')}}</p>
+                    </div>
+                </div>
+                @endif
+            </div>
+        <table>
+            <tr class="main__add--table-title">
+                <th>店舗名</th>
+                <th>都道府県</th>
+                <th>ジャンル</th>
+                <th>店舗概要</th>
+                <th>店舗画像</th>
+            </tr>
+            <tr>
+                <form  method="POST" action="{{ route('register') }}">
+                    @csrf
+                    <td><input type="text" name="name"></td>
+                    <td><input type="text" name="area"></td>
+                    <td><input type="text" name="category"></td>
+                    <td><textarea name="overview"></textarea></td>
+                    <td><input type="text" name="name"></td>
+                    <td><button type="submit">登録</button></td>
+                </form>
+            </tr>
+        </table>
+    </div>
+
 </main>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-const TextLimit = () => {
-    let maxLength = 25;
-    let limitedText = document.getElementsByClassName('opinion-limit');
-    for (i = 0; i < limitedText.length; i++) {
-    let originalText = document.getElementsByClassName('opinion-limit')[i].innerHTML;
-    if (originalText.length > maxLength) {
-        document.getElementsByClassName('opinion-limit')[i].innerHTML = originalText.substr(0, maxLength) + '...';
-    }
-    }
-    }
-TextLimit();
-
-$(function() {
-
-    $('.opinion').hover(function(){
-        $(this).find('.opinion-limit').toggleClass('none');
-        $(this).find('.opinion-origin').toggleClass('none')},
-    function(){
-        $(this).find('.opinion-limit').toggleClass('none');
-        $(this).find('.opinion-origin').toggleClass('none')}
-    )
-});
+    
 </script>
 
 @endsection
