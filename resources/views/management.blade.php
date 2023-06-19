@@ -49,7 +49,7 @@
     </div>
 
     @isset($shopUpdate)
-    <div class="main__add--table">
+    <div class="main__detail">
         <h2>店舗詳細</h2>
         <div class="flex__item">
             <div class="store-wrap__item" href="">
@@ -144,7 +144,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-    
+
 </script>
 
 @endsection
