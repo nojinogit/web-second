@@ -39,6 +39,10 @@ p{
   display: inline;
 }
 
+.store-wrap__item-eyecatch {
+  width: 100%;
+}
+
 .reserve {
   width: 45%;
   margin:5px;

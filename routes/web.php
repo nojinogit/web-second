@@ -62,8 +62,9 @@ Route::group(['middleware' => ['auth', 'can:admin_only']], function () {
 Route::group(['middleware' => ['auth', 'can:manager_admin']], function () {
     Route::get('/managementIndex', [ManagementController::class,'managementIndex'])->name('managementIndex');
     Route::get('/representativeShop', [ManagementController::class,'representativeShop'])->name('representativeShop');
-    Route::get('/shopUpdate', [ManagementController::class,'shopUpdate'])->name('shopUpdate');
+    Route::get('/shopUpdateArea', [ManagementController::class,'shopUpdateArea'])->name('shopUpdateArea');
     Route::get('/shopReserve', [ManagementController::class,'shopReserve'])->name('shopReserve');
+    Route::post('/shopCreate', [ManagementController::class,'shopCreate'])->name('shopCreate');
 });
 
 require __DIR__.'/auth.php';

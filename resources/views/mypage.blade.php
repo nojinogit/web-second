@@ -67,7 +67,7 @@
                 <div class="store-wrap-area">
                 @foreach($shops as $shop)
                     <div class="store-wrap__item delete{{$shop->shop->id}}" href="">
-                        <img src="{{$shop->shop->image_name}}" alt="" class="store-wrap__item-eyecatch">
+                        <img src="{{asset($shop->shop->path)}}" alt="" class="store-wrap__item-eyecatch">
                         <div class="store-wrap__item-content">
                             <h2>{{$shop->shop->name}}</h2>
                             <div>

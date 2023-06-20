@@ -9,6 +9,15 @@ class Shop extends Model
 {
     use HasFactory;
 
+    protected $fillable=[
+        'name',
+        'area',
+        'category',
+        'overview',
+        'image_name',
+        'path',
+    ];
+
     public function scopeNameSearch($query,$name){
         if(!empty($name)){
             $query->where('name','like','%'.$name.'%');

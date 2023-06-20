@@ -16,7 +16,7 @@ class ManagementController extends Controller
     return view('/management',compact('shops'));
     }
 
-    public function shopUpdate(Request $request){
+    public function shopUpdateArea(Request $request){
 
     $shopUpdate=Shop::find($request->id);
     $shops=Representative::with('shop')->where('user_id',Auth::user()->id)->get();
@@ -28,4 +28,17 @@ class ManagementController extends Controller
     $shops=Representative::with('shop')->where('user_id',Auth::user()->id)->get();
     return view('/management',compact('reserves','shops'));
     }
+
+    public function shopCreate(Request $request){
+    $dir='sample';
+    $image_name=$request->file('image')->getClientOriginalName();
+    $request->file('image')->storeAs('public/'.$dir,$image_name);
+    $shop=['name'=>$request->name,'area'=>$request->area,'category'=>$request->category,'overview'=>$request->overview,'image_name' => $image_name,'path' => 'storage/'.$dir.'/'.$image_name];
+    Shop::create($shop);
+    $shopId=Shop::latest('id')->first();
+    Representative::create(['shop_id' => $shopId->id,'user_id' => Auth::user()->id]);
+    return redirect('/managementIndex');
+    }
+
+
 }

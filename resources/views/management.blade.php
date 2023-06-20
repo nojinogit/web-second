@@ -27,7 +27,7 @@
             <tr>
                 <td>{{$shop->shop->name}}</td>
                 <td>
-                    <form method="get" action="/shopUpdate">
+                    <form method="get" action="/shopUpdateArea">
                         <input type="hidden" value="{{$shop->shop->id}}" name="id">
                         <button type="submit">更新画面を開く</button>
                     </form>
@@ -54,7 +54,7 @@
         <div class="flex__item">
             <div class="store-wrap__item" href="">
                 <h1>{{$shopUpdate->name}}</h1>
-                <img src="{{$shopUpdate->image_name}}" alt="" class="store-wrap__item-eyecatch">
+                <img src="{{asset($shopUpdate->path)}}" alt="" class="store-wrap__item-eyecatch">
                 <div class="store-wrap__item-content">
                     <div>
                         <p class="store-wrap__item-content-tag">#{{$shopUpdate->area}}</p>
@@ -126,13 +126,13 @@
                 <th>店舗画像</th>
             </tr>
             <tr>
-                <form  method="POST" action="{{ route('register') }}">
+                <form  method="POST" action="/shopCreate" enctype="multipart/form-data">
                     @csrf
                     <td><input type="text" name="name"></td>
                     <td><input type="text" name="area"></td>
                     <td><input type="text" name="category"></td>
                     <td><textarea name="overview"></textarea></td>
-                    <td><input type="text" name="name"></td>
+                    <td><input type="file" name="image"></td>
                     <td><button type="submit">登録</button></td>
                 </form>
             </tr>

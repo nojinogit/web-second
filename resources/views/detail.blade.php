@@ -11,7 +11,7 @@
         <div class="flex__item store-wrap">
             <div class="store-wrap__item" href="">
                 <h1>{{$shop->name}}</h1>
-                <img src="{{$shop->image_name}}" alt="" class="store-wrap__item-eyecatch">
+                <img src="{{asset($shop->path)}}" alt="" class="store-wrap__item-eyecatch">
                 <div class="store-wrap__item-content">
                     <div>
                         <p class="store-wrap__item-content-tag">#{{$shop->area}}</p>

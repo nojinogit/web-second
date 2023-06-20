@@ -34,7 +34,7 @@
         <div class="flex__item store-wrap">
             @foreach($shops as $shop)
             <div class="store-wrap__item" href="">
-                <img src="{{$shop->image_name}}" alt="" class="store-wrap__item-eyecatch">
+                <img src="{{asset($shop->path)}}" alt="" class="store-wrap__item-eyecatch">
                 <div class="store-wrap__item-content">
                     <h2>{{$shop->name}}</h2>
                     <div>
