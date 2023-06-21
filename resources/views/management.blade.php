@@ -27,7 +27,7 @@
             <tr>
                 <td>{{$shop->shop->name}}</td>
                 <td>
-                    <form method="get" action="/shopUpdateArea">
+                    <form method="get" action="/shopUpdateIndex">
                         <input type="hidden" value="{{$shop->shop->id}}" name="id">
                         <button type="submit">更新画面を開く</button>
                     </form>
@@ -52,7 +52,7 @@
     <div class="main__detail">
         <h2>店舗詳細</h2>
         <div class="flex__item">
-            <div class="store-wrap__item" href="">
+            <div class="store-wrap__item">
                 <h1>{{$shopUpdate->name}}</h1>
                 <img src="{{asset($shopUpdate->path)}}" alt="" class="store-wrap__item-eyecatch">
                 <div class="store-wrap__item-content">
@@ -65,12 +65,15 @@
                     </div>
                 </div>
             </div>
-            <div class="store-wrap__item" href="">
-                <form action="">
+            <div class="store-wrap__item">
+                <form action="{{route('shopUpdate')}}" method="post"  enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" value="{{$shopUpdate->id}}" name="id">
                     <p><label for="">店舗名</label>&emsp;<input type="text" name="name" value="{{$shopUpdate->name}}"></p>
                     <p><label for="">都道府県</label>&emsp;<input type="text" name="area"  value="{{$shopUpdate->area}}"></p>
                     <p><label for="">ジャンル</label>&emsp;<input type="text" name="category"  value="{{$shopUpdate->category}}"></p>
-                    <p>店舗概要&emsp;<textarea name="overview" cols="50" rows="8"  value="{{$shopUpdate->overview}}"></textarea></p>
+                    <p>店舗概要&emsp;<textarea name="overview" cols="50" rows="8"></textarea></p>
+                    <p><label for="">店舗画像</label>&emsp;<input type="file" name="image"></p>
                     <button type="submit">更新</button>
                 </form>
             </div>
@@ -107,6 +110,13 @@
 
     <div class="main__add--table">
         <h2>新規店舗作成</h2>
+        @if (count($errors) > 0)
+                <ul class="error">
+                @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+                </ul>
+                @endif
         <div>
             <div id="time"></div>
                 @if(session('message'))

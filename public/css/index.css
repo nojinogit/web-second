@@ -89,6 +89,7 @@ button{
 
 .store-wrap__item-eyecatch {
   border-radius: 15px 15px 0 0;
+  height: 200px;
 }
 
 .store-wrap__item-content-tag {

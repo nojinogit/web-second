@@ -107,6 +107,10 @@ p{
   border-radius: 15px;
 }
 
+.store-wrap__item-eyecatch{
+  height: 200px;
+}
+
 .store-wrap__item img{
   border-radius: 15px 15px 0 0;
 }

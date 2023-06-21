@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Representative;
 use App\Models\Shop;
 use App\Models\Reserve;
+use App\Http\Requests\ShopRequest;
 
 class ManagementController extends Controller
 {
@@ -16,7 +17,7 @@ class ManagementController extends Controller
     return view('/management',compact('shops'));
     }
 
-    public function shopUpdateArea(Request $request){
+    public function shopUpdateIndex(Request $request){
 
     $shopUpdate=Shop::find($request->id);
     $shops=Representative::with('shop')->where('user_id',Auth::user()->id)->get();
@@ -29,7 +30,7 @@ class ManagementController extends Controller
     return view('/management',compact('reserves','shops'));
     }
 
-    public function shopCreate(Request $request){
+    public function shopCreate(ShopRequest $request){
     $dir='sample';
     $image_name=$request->file('image')->getClientOriginalName();
     $request->file('image')->storeAs('public/'.$dir,$image_name);
@@ -37,6 +38,31 @@ class ManagementController extends Controller
     Shop::create($shop);
     $shopId=Shop::latest('id')->first();
     Representative::create(['shop_id' => $shopId->id,'user_id' => Auth::user()->id]);
+    return redirect('/managementIndex');
+    }
+
+    public function shopUpdate(Request $request){
+
+    if($request->file('image')!==null){
+        $dir='sample';
+        $image_name=$request->file('image')->getClientOriginalName();
+        $request->file('image')->storeAs('public/'.$dir,$image_name);
+        $shop=['image_name' => $image_name,'path' => 'storage/'.$dir.'/'.$image_name];
+        }
+
+    if($request->name!==null){
+    $shop['name']=$request->name;}
+
+    if($request->area!==null){
+    $shop['area']=$request->area;}
+
+    if($request->category!==null){
+    $shop['category']=$request->category;}
+
+    if($request->overview!==null){
+    $shop['overview']=$request->overview;}
+
+    Shop::find($request->id)->update($shop);
     return redirect('/managementIndex');
     }
 

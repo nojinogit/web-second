@@ -76,6 +76,11 @@ tr:first-child{
     padding-bottom: 10px;
 }
 
+.error {
+    list-style: none;
+    color: red;
+}
+
 
 
 
