@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Representative;
 use App\Models\Shop;
 use App\Models\Reserve;
 use App\Http\Requests\ShopRequest;
+use App\Mail\InformMail;
+use Illuminate\Contracts\Mail\Mailer;
 
 class ManagementController extends Controller
 {
@@ -60,10 +63,18 @@ class ManagementController extends Controller
     $shop['category']=$request->category;}
 
     if($request->overview!==null){
-    $shop['overview']=$request->overview;}
+    $shop +=array('overview'=>$request->overview);}
 
     Shop::find($request->id)->update($shop);
     return redirect('/managementIndex');
+    }
+
+    public function informMail(Request $request,Mailer $mailer){
+
+    $mailer->to($request->email)->send(new InformMail($request->name,$request->date,$request->time,$request->shop));
+
+    $shops=Representative::with('shop')->where('user_id',Auth::user()->id)->get();
+    return view('/management',compact('shops'));
     }
 
 

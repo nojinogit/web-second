@@ -102,6 +102,16 @@
                 <td>{{$reserve->user->name}}</td>
                 <td>{{$reserve->hc}}</td>
                 <td>{{$reserve->deleted_at}}</td>
+                <td>
+                    <form action="{{route('informMail')}}" method="get">
+                        <input type="hidden" value="{{$reserve->user->name}}" name="name">
+                        <input type="hidden" value="{{$reserve->user->email}}" name="email">
+                        <input type="hidden" value="{{$reserve->shop->name}}" name="shop">
+                        <input type="hidden" value="{{$reserve->date}}" name="date">
+                        <input type="hidden" value="{{$reserve->time}}" name="time">
+                        <button type="submit">お知らせメール</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </table>

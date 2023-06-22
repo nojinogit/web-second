@@ -66,6 +66,7 @@ Route::group(['middleware' => ['auth', 'can:manager_admin']], function () {
     Route::get('/shopReserve', [ManagementController::class,'shopReserve'])->name('shopReserve');
     Route::post('/shopCreate', [ManagementController::class,'shopCreate'])->name('shopCreate');
     Route::post('/shopUpdate', [ManagementController::class,'shopUpdate'])->name('shopUpdate');
+    Route::get('/informMail', [ManagementController::class,'informMail'])->name('informMail');
 });
 
 require __DIR__.'/auth.php';
