@@ -28,7 +28,7 @@ class ManagementController extends Controller
     }
 
     public function shopReserve(Request $request){
-    $reserves=reserve::with('user','shop')->withTrashed()->where('shop_id',$request->id)->StartDateSearch($request->startDate)->EndDateSearch($request->endDate)->get();
+    $reserves=Reserve::with('user','shop')->withTrashed()->where('shop_id',$request->id)->StartDateSearch($request->startDate)->EndDateSearch($request->endDate)->get();
     $shops=Representative::with('shop')->where('user_id',Auth::user()->id)->get();
     return view('/management',compact('reserves','shops'));
     }
