@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('schedule-command')->dailyAt('8:00');
         //$schedule->command('schedule-command')->everyMinute();
+        $schedule->command('review-command')->everyMinute();
     }
 
     /**

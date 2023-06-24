@@ -12,6 +12,8 @@ use App\Http\Requests\ShopRequest;
 use App\Mail\InformMail;
 use Illuminate\Contracts\Mail\Mailer;
 
+
+
 class ManagementController extends Controller
 {
     public function managementIndex(Request $request){

@@ -111,3 +111,106 @@ h2{
   list-style: none;
   color:white;
 }
+
+.review-area{
+  border: 1px solid grey;
+  margin-top: 50px;
+}
+
+.review-box {
+  padding: 20px;
+}
+
+.rate-form {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.rate-form input[type=radio] {
+  display: none;
+}
+
+.rate-form label {
+  position: relative;
+  padding: 0 5px;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 35px;
+}
+
+.rate-form label:hover {
+  color: #ffcc00;
+}
+
+.rate-form label:hover~label {
+  color: #ffcc00;
+}
+
+.rate-form input[type=radio]:checked~label {
+  color: #ffcc00;
+}
+
+.review-main{
+  padding: 20px;
+  border: 1px solid grey;
+  margin-top: 20px;
+}
+
+.review-user{
+  display: flex;
+}
+
+.review-user p {
+  margin-right: 2%;
+}
+
+.star5_rating {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  white-space: nowrap;
+  color: #CCCCCC;
+  /* グレーカラー 自由に設定化 */
+  /*font-size: 30px; フォントサイズ 自由に設定化 */
+}
+
+.star5_rating:before,
+.star5_rating:after {
+  content: '★★★★★';
+}
+
+.star5_rating:after {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #ffcf32;
+  /* イエローカラー 自由に設定化 */
+}
+
+.star5_rating[data-rate="5"]:after {
+  width: 100%;
+}
+
+.star5_rating[data-rate="4"]:after {
+  width: 80%;
+}
+
+.star5_rating[data-rate="3"]:after {
+  width: 60%;
+}
+
+.star5_rating[data-rate="2"]:after {
+  width: 40%;
+}
+
+.star5_rating[data-rate="1"]:after {
+  width: 20%;
+}
+
+
+
+

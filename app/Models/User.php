@@ -56,6 +56,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Representative::class);
     }
 
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
+
     public function scopeNameSearch($query,$name){
         if(!empty($name)){
             $query->where('name','like','%'.$name.'%');

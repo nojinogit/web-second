@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Favorite;
+use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
@@ -18,6 +19,16 @@ class ShopController extends Controller
 
     public function detail($id){
     $shop=Shop::find($id);
-    return view('/detail',compact('shop'));
+    $reviews=Review::with('user')->where('shop_id',$id)->whereNot('score')->get();
+    if(!empty(Auth::user()->id)){
+        $reviewArea=Review::where('user_id',Auth::user()->id)->where('shop_id',$id)->first();
+        if(!empty($reviewArea->score)){
+            return view('/detail',compact('shop','reviews'));
+        }
+        elseif(empty($reviewArea->score)){
+            return view('/detail',compact('shop','reviewArea','reviews'));
+        }
+    }
+    return view('/detail',compact('shop','reviews'));
     }
 }

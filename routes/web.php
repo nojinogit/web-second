@@ -11,6 +11,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\RepresentativeController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,20 +35,15 @@ Route::get('/',[ShopController::class,'index'])->name('index');
 Route::get('/detail/{id}',[ShopController::class,'detail'])->name('detail');
 Route::get('/search',[SearchController::class,'search'])->name('search');
 
-//Route::get('/dashboard', function () {//
-//    return view('dashboard');//
-//})->middleware(['auth', 'verified'])->name('dashboard');//
-
 Route::middleware(['auth','verified'])->group(function () {
-    //Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');//
-    //Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');//
-    //Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');//
     Route::get('/myPage',[MyPageController::class,'myPage'])->name('myPage');
     Route::post('/reserveAdd',[ReserveController::class,'reserveAdd'])->name('reserveAdd');
     Route::post('/reserveDelete',[ReserveController::class,'reserveDelete'])->name('reserveDelete');
     Route::post('/reserveUpdate',[ReserveController::class,'reserveUpdate'])->name('reserveUpdate');
     Route::post('/favoriteStore',[FavoriteController::class,'favoriteStore'])->name('favoriteStore');
     Route::post('/favoriteDelete',[FavoriteController::class,'favoriteDelete'])->name('favoriteDelete');
+    Route::post('/reviewAdd',[ReviewController::class,'reviewAdd'])->name('reviewAdd');
+    Route::post('/reviewDelete',[ReviewController::class,'reviewDelete'])->name('reviewDelete');
 });
 
 Route::group(['middleware' => ['auth', 'can:admin_only']], function () {
