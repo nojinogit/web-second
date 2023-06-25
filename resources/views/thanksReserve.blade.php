@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+
     <div class="container">
         <div  class="thanks">
             <h1>ご予約ありがとうございました</h1>

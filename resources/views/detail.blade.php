@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container bg-white ">
         <div class="flex__item store-wrap">
             <div class="store-wrap__item" href="">
                 <h1>{{$shop->name}}</h1>
@@ -27,8 +27,8 @@
             </div>
             <div class="reserve">
                 <h2>予約</h2>
-                <form action="/reserveAdd" method="post">
-                        @csrf
+                <form action="{{route('reserveAdd')}}" method="post">
+                    @csrf
                     <div class="reserve-input">
                         @auth
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
@@ -37,13 +37,15 @@
                         <p><input type="date" name="date" id="input-date" value="{{ old('date') }}"></p>
                         <p><input type="time" name="time" id="input-time" value="{{ old('time') }}"></p>
                         <p><input type="number" max="10" min="1" name="hc" id="input-number" value="{{ old('hc') }}"></p>
+                        <p><label id="recommendation">おすすめコース(１人￥1,000)を事前決済する</label>&emsp;<input type="checkbox" name="recommendation" id="input-recommendation" value="1"></p>
                     </div>
                     <div class="reserve-confirmation">
                         <div class="reserve-confirmation-area">
-                            <p><label for="">shop</label>&emsp;<span>{{$shop->name}}</span></p>
-                            <p><label for="">date</label>&emsp;<span id="output-date">{{ old('date') }}</span></p>
-                            <p><label for="">time</label>&emsp;<span id="output-time">{{ old('time') }}</span></p>
-                            <p><label for="">number</label>&emsp;<span id="output-number">{{ old('hc') }}</span></p>
+                            <p><label>shop</label>&emsp;<span>{{$shop->name}}</span></p>
+                            <p><label>date</label>&emsp;<span id="output-date">{{ old('date') }}</span></p>
+                            <p><label>time</label>&emsp;<span id="output-time">{{ old('time') }}</span></p>
+                            <p><label>number</label>&emsp;<span id="output-number">{{ old('hc') }}</span></p>
+                            <p><label>おすすめ</label>&emsp;<span id="output-recommendation"></span></p>
                         </div>
                     </div>
                     <button type="submit" id="button">
@@ -131,8 +133,19 @@
     });
     $('#input-number').on('input',function(){
     $('#output-number').text($(this).val());
+        if($('#input-recommendation').prop('checked')){
+        $('#output-recommendation').text($('#input-number').val()*1000+"円");
+        }
+    });
+    $('#input-recommendation').change(function(){
+        if($(this).prop('checked')){
+        $('#output-recommendation').text($('#input-number').val()*1000+"円");
+        }else{
+        $('#output-recommendation').text('');
+        }
     });
 });
 </script>
+
 
 @endsection

@@ -11,7 +11,11 @@ class ReserveController extends Controller
     public function reserveAdd(ReserveRequest $request){
 
         $reserve=$request->only(['user_id','shop_id','date','time','hc']);
-        Reserve::create($reserve);
+        $reserveId=Reserve::create($reserve);
+        $reserveData=Reserve::with('shop')->find($reserveId->id);
+        if($request->recommendation==1){
+            return view('payment.create',compact('reserveData'));
+        }
         return redirect('/thanksReserve');
     }
 

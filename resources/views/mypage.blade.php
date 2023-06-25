@@ -9,6 +9,17 @@
 @section('content')
     <div class="container">
         <h1>ようこそ&emsp;{{ Auth::user()->name }}さん！</h1>
+        @if(Auth::user()->role > 9)
+            <h2>当日予約状況</h2>
+            <div class="qr-area">
+                @foreach($representatives as $representative)
+                <div class="qr-box">
+                    <p>{{$representative->shop->name}}</p>
+                    <p>{{QrCode::generate(route('representativeReserve',[$representative->shop_id]))}}</p>
+                </div>
+                @endforeach
+            </div>
+        @endif
         <div class="container-area">
             <div class="reserve-wrap">
                 <h2>予約状況</h2>

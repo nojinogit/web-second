@@ -11,7 +11,7 @@ class Reserve extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['user_id','shop_id','date','time','hc','delete_at'];
+    protected $fillable = ['user_id','shop_id','date','time','hc','delete_at','recommendation'];
 
     public function user(){
         return $this->belongsTo(User::class);

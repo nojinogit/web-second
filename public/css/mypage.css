@@ -36,6 +36,14 @@ p{
   justify-content: space-between;
 }
 
+.qr-area{
+  display: flex;
+}
+
+.qr-box {
+  margin-right: 10%;
+}
+
 .reserve-wrap {
   margin-top: 20px;
   width: 40%;

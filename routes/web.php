@@ -12,6 +12,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\RepresentativeController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ Route::get('/thanksReserve', function () {return view('/thanksReserve');});
 Route::get('/',[ShopController::class,'index'])->name('index');
 Route::get('/detail/{id}',[ShopController::class,'detail'])->name('detail');
 Route::get('/search',[SearchController::class,'search'])->name('search');
+Route::get('/representativeReserve/{id}',[MyPageController::class,'representativeReserve'])->name('representativeReserve');
 
 Route::middleware(['auth','verified'])->group(function () {
     Route::get('/myPage',[MyPageController::class,'myPage'])->name('myPage');
@@ -44,6 +46,8 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post('/favoriteDelete',[FavoriteController::class,'favoriteDelete'])->name('favoriteDelete');
     Route::post('/reviewAdd',[ReviewController::class,'reviewAdd'])->name('reviewAdd');
     Route::post('/reviewDelete',[ReviewController::class,'reviewDelete'])->name('reviewDelete');
+    Route::get('/payment/create', [PaymentController::class, 'create'])->name('payment.create');
+    Route::post('/payment/store', [PaymentController::class, 'store'])->name('payment.store');
 });
 
 Route::group(['middleware' => ['auth', 'can:admin_only']], function () {
@@ -64,5 +68,9 @@ Route::group(['middleware' => ['auth', 'can:manager_admin']], function () {
     Route::post('/shopUpdate', [ManagementController::class,'shopUpdate'])->name('shopUpdate');
     Route::get('/informMail', [ManagementController::class,'informMail'])->name('informMail');
 });
+
+
+
+
 
 require __DIR__.'/auth.php';

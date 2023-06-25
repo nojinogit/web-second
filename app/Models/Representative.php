@@ -27,7 +27,7 @@ class Representative extends Model
 
     public function scopeShopSearch($query,$shop_id){
         if(!empty($shop_id)){
-            $query->where('area',$shop_id);
+            $query->where('shop_id',$shop_id);
         }
     }
 }
