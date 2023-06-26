@@ -18,21 +18,21 @@ p{
   margin: 100px auto;
 }
 
-.store-wrap {
+.shop-wrap {
   margin-top: 20px;
 }
 
-.store-wrap__item {
+.shop-wrap__item {
   width: 45%;
-  margin:5px;
+  margin:2%;
   display: block;
 }
 
-.store-wrap__item-content {
-  padding: 20px;
+.shop-wrap__item-content {
+  padding: 5%;
 }
 
-.store-wrap__item-content-tag {
+.shop-wrap__item-content-tag {
   font-size: 20px;
   font-weight: bold;
   margin-top: 20px;
@@ -41,7 +41,7 @@ p{
 
 .reserve {
   width: 45%;
-  margin:5px;
+  margin:2%;
   display: block;
   background-color:rgb(0, 60, 255);
   border-radius: 10px;
@@ -51,7 +51,7 @@ p{
 }
 
 .reserve-input{
-  padding-left:20px;
+  padding-left:3%;
 }
 
 h2{
@@ -87,11 +87,11 @@ h2{
 .reserve-confirmation{
   background-color:rgba(0, 208, 255, 0.495);
   border-radius: 5px;
-  margin: 20px;
+  margin: 3%;
 }
 
 .reserve-confirmation-area{
-  padding: 20px;
+  padding: 3%;
   color: white;
 }
 
@@ -107,7 +107,6 @@ h2{
   border-radius: 0 0 5px 5px;
 }
 
-
 .error{
   list-style: none;
   color:white;
@@ -120,6 +119,20 @@ h2{
 
 .review-box {
   padding: 20px;
+}
+
+.review-main {
+  padding: 2%;
+  border: 1px solid grey;
+  margin-top: 20px;
+}
+
+.review-user {
+  display: flex;
+}
+
+.review-user p {
+  margin-right: 2%;
 }
 
 .rate-form {
@@ -150,20 +163,6 @@ h2{
 
 .rate-form input[type=radio]:checked~label {
   color: #ffcc00;
-}
-
-.review-main{
-  padding: 20px;
-  border: 1px solid grey;
-  margin-top: 20px;
-}
-
-.review-user{
-  display: flex;
-}
-
-.review-user p {
-  margin-right: 2%;
 }
 
 .star5_rating {

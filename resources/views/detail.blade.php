@@ -7,17 +7,17 @@
 @endsection
 
 @section('content')
-    <div class="container bg-white ">
-        <div class="flex__item store-wrap">
-            <div class="store-wrap__item" href="">
+    <div class="container">
+        <div class="flex__item shop-wrap">
+            <div class="shop-wrap__item" href="">
                 <h1>{{$shop->name}}</h1>
-                <img src="{{asset($shop->path)}}" alt="" class="store-wrap__item-eyecatch">
-                <div class="store-wrap__item-content">
+                <img src="{{asset($shop->path)}}" alt="" class="shop-wrap__item-eyecatch">
+                <div class="shop-wrap__item-content">
                     <div>
-                        <p class="store-wrap__item-content-tag">#{{$shop->area}}</p>
-                        <p class="store-wrap__item-content-tag">#{{$shop->category}}</p>
+                        <p class="shop-wrap__item-content-tag">#{{$shop->area}}</p>
+                        <p class="shop-wrap__item-content-tag">#{{$shop->category}}</p>
                     </div>
-                    <div class="flex__item store-wrap">
+                    <div class="flex__item shop-wrap">
                         <p>
                             {{$shop->overview}}
                         </p>

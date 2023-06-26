@@ -52,42 +52,34 @@
     <div class="main__add--table">
         <h2>アカウント一覧</h2>
         <div>
-            <div id="time"></div>
-                @if(session('message'))
-                <div class="message">
-                    <div class="message__success">
-                        <p class="message__success--p" id="session" style="color:blue;">{{session('message')}}</p>
-                    </div>
-                </div>
-                @endif
-            </div>
-        <table>
-            <tr class="main__add--table-title">
-                <th>お名前</th>
-                <th>メールアドレス</th>
-                <th>権限</th>
-            </tr>
-            @foreach($accounts as $account)
-            <tr>
-                <form  method="POST" action="accountDelete">
-                    @csrf
-                    <input type="hidden" name="id" value="{{$account->id}}">
-                    <td>{{$account->name}}</td>
-                    <td>{{$account->email}}</td>
-                    <td>
-                        @if($account->role==100)
-                        管理者
-                        @elseif($account->role==10)
-                        店舗代表者
-                        @elseif($account->role==1)
-                        一般ユーザ
-                        @endif
-                    </td>
-                    <td><button type="submit">削除</button></td>
-                </form>
-            </tr>
-            @endforeach
-        </table>
+            <table>
+                <tr>
+                    <th>お名前</th>
+                    <th>メールアドレス</th>
+                    <th>権限</th>
+                </tr>
+                @foreach($accounts as $account)
+                <tr>
+                    <form  method="POST" action="accountDelete">
+                        @csrf
+                        <input type="hidden" name="id" value="{{$account->id}}">
+                        <td>{{$account->name}}</td>
+                        <td>{{$account->email}}</td>
+                        <td>
+                            @if($account->role==100)
+                            管理者
+                            @elseif($account->role==10)
+                            店舗代表者
+                            @elseif($account->role==1)
+                            一般ユーザ
+                            @endif
+                        </td>
+                        <td><button type="submit">削除</button></td>
+                    </form>
+                </tr>
+                @endforeach
+            </table>
+        </div>
     </div>
     @endisset
 
@@ -101,18 +93,15 @@
             @endforeach
             </ul>
         @endif
-        <div>
-            <div id="time"></div>
-                @if(session('message'))
-                <div class="message">
-                    <div class="message__success">
-                        <p class="message__success--p" id="session" style="color:blue;">{{session('message')}}</p>
-                    </div>
+        @if(session('message'))
+            <div class="message">
+                <div class="message__success">
+                    <p class="message__success--p" id="session" style="color:blue;">{{session('message')}}</p>
                 </div>
-                @endif
             </div>
+        @endif
         <table>
-            <tr class="main__add--table-title">
+            <tr>
                 <th>お名前</th>
                 <th>メールアドレス</th>
                 <th>パスワード</th>
@@ -175,16 +164,6 @@
     @isset($representatives)
     <div class="main__add--table">
         <h2>店舗代表者一覧</h2>
-        <div>
-            <div id="time"></div>
-                @if(session('message'))
-                <div class="message">
-                    <div class="message__success">
-                        <p class="message__success--p" id="session" style="color:blue;">{{session('message')}}</p>
-                    </div>
-                </div>
-                @endif
-            </div>
         <table>
             <tr class="main__add--table-title">
                 <th>お名前</th>
@@ -219,7 +198,7 @@
         @endif
         <div>
         <table>
-            <tr class="main__add--table-title">
+            <tr>
                 <th>お名前</th>
                 <th>店舗</th>
             </tr>
@@ -248,32 +227,5 @@
         </table>
     </div>
 </main>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-const TextLimit = () => {
-    let maxLength = 25;
-    let limitedText = document.getElementsByClassName('opinion-limit');
-    for (i = 0; i < limitedText.length; i++) {
-    let originalText = document.getElementsByClassName('opinion-limit')[i].innerHTML;
-    if (originalText.length > maxLength) {
-        document.getElementsByClassName('opinion-limit')[i].innerHTML = originalText.substr(0, maxLength) + '...';
-    }
-    }
-    }
-TextLimit();
-
-$(function() {
-
-    $('.opinion').hover(function(){
-        $(this).find('.opinion-limit').toggleClass('none');
-        $(this).find('.opinion-origin').toggleClass('none')},
-    function(){
-        $(this).find('.opinion-limit').toggleClass('none');
-        $(this).find('.opinion-origin').toggleClass('none')}
-    )
-});
-</script>
 
 @endsection

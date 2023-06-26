@@ -39,6 +39,7 @@ Route::get('/representativeReserve/{id}',[MyPageController::class,'representativ
 
 Route::middleware(['auth','verified'])->group(function () {
     Route::get('/myPage',[MyPageController::class,'myPage'])->name('myPage');
+    Route::get('/recommendationAdd',[MyPageController::class,'recommendationAdd'])->name('recommendationAdd');
     Route::post('/reserveAdd',[ReserveController::class,'reserveAdd'])->name('reserveAdd');
     Route::post('/reserveDelete',[ReserveController::class,'reserveDelete'])->name('reserveDelete');
     Route::post('/reserveUpdate',[ReserveController::class,'reserveUpdate'])->name('reserveUpdate');

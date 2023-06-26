@@ -1,47 +1,48 @@
-img {
-  width: 100%;
-  height: auto;
-}
-
-#clock {
-  width: 40px;
-  height: auto;
-}
-
-#reserve-num{
-  margin-left: 25px;
-  font-weight: bold;
-}
-
-h1{
-  text-align: center;
-}
-
-h2{
-  margin-left: 25px;
-}
-
-p{
-  font-weight: bold;
-}
 
 .container {
   max-width: 1500px;
   margin: 100px auto;
 }
 
-.container-area {
+img {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  height: auto;
 }
 
-.qr-area{
+#clock {
+  width: 8%;
+  height: auto;
+}
+
+#reserve-num {
+  margin-left: 3%;
+  font-weight: bold;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  margin-left: 4%;
+}
+
+p {
+  font-weight: bold;
+}
+
+.qr-area {
   display: flex;
 }
 
 .qr-box {
   margin-right: 10%;
+}
+
+.container-area {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .reserve-wrap {
@@ -51,25 +52,39 @@ p{
 
 .reserve-wrap__item {
   width: 100%;
-  margin: 5px;
+  margin: 1%;
   display: block;
 }
 
 .reserve-confirmation {
   background-color: rgb(0, 60, 255);
   border-radius: 5px;
-  margin:33px 20px;
+  margin:30px 1%;
 }
 
 .reserve-confirmation-area {
-  padding: 20px;
+  padding: 3%;
   color: white;
 }
 
 .reserve-confirmation-area-head form {
-  display: inline-block;
-  float: right;
-  margin-right: 1%;;
+  float:right;
+  margin-right: 1%;
+}
+
+.confirm-button-area {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#confirm-button {
+  width: 15%;
+  background-color: rgb(0, 60, 255);
+  border: 2px solid white;
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 #input-date {
@@ -95,19 +110,24 @@ p{
   border: none;
 }
 
-.store-wrap {
+#recommendation {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid white;
+}
+
+.shop-wrap {
   margin-top: 20px;
   width: 50%;
 }
 
-.store-wrap-area{
+.shop-wrap-area{
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  
 }
 
-.store-wrap__item {
+.shop-wrap__item {
   width: 45%;
   margin: 10px;
   display: block;
@@ -115,63 +135,45 @@ p{
   border-radius: 15px;
 }
 
-.store-wrap__item-eyecatch{
+.shop-wrap__item-eyecatch{
   height: 200px;
 }
 
-.store-wrap__item img{
+.shop-wrap__item img{
   border-radius: 15px 15px 0 0;
 }
 
-.store-wrap__item-content {
+.shop-wrap__item-content {
   background: #fff;
   border-radius: 0 0 15px 15px;
   padding: 20px;
 }
 
-.store-wrap__item-content-tag {
+.shop-wrap__item-content-tag {
   font-size: 20px;
   font-weight: bold;
   margin-top: 20px;
   display: inline;
 }
 
-.store-wrap__item-bottom {
+.shop-wrap__item-bottom {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
-}
-
-#button{
-  background-color: rgb(0, 60, 255);
-  border: 2px solid white;
-  border-radius: 3px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  display: block;
-  float: right;
-}
-
-.confirm-button-area{
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-#confirm-button{
-  width: 15%;
-  background-color: rgb(0, 60, 255);
-  border: 2px solid white;
-  border-radius: 3px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
 }
 
 button {
   background-color: white;
   border: none;
   cursor: pointer;
+}
+
+.button{
+  background-color: rgb(0, 60, 255);
+  border: 2px solid white;
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
 }
 
 .heart {

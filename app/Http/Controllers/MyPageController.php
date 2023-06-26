@@ -30,4 +30,9 @@ class MyPageController extends Controller
         $reserves=Reserve::with('user','shop')->withTrashed()->where('shop_id',$id)->StartDateSearch(Carbon::today())->EndDateSearch(Carbon::today())->get();
         return view('/reserveToday',compact('reserves'));
     }
+
+    public function recommendationAdd(Request $request){
+        $reserveData=Reserve::with('shop')->find($request->id);
+        return view('payment.create',compact('reserveData'));
+    }
 }

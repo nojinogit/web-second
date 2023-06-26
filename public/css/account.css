@@ -1,5 +1,5 @@
 .main {
-    max-width: 1210px;
+    max-width: 1200px;
     margin: 0 auto;
     text-align: center;
 }
@@ -17,11 +17,6 @@
 
 .main__search--step-title{
     width: 50%;
-    height: 40px;
-    line-height: 40px;
-}
-
-.main__search--step-button{
     height: 40px;
     line-height: 40px;
 }
@@ -59,7 +54,7 @@
 
 .main__add--table{
     width:100%;
-    margin: 50px auto;
+    margin: 30px auto;
     border: 1px solid black;
 }
 
@@ -72,86 +67,8 @@ tr:first-child{
     border-bottom: 1px solid black;
 }
 
-.main__add--table th{
-    padding-right:50px;
-    white-space: nowrap;
-}
-
-.main__add--table td {
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-bottom: 10px;
-}
-
-.none{
-    display: none;
-}
-
-.opinion{
-    max-width: 350px;
-}
-
-.opinion-limit {
-    white-space: nowrap;
-}
-
-.opinion-origin {
-    max-width: 350px;
-    white-space: normal;
-}
-
-#delete__submit {
-    color: white;
-    width:70px;
-    background-color:black;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.main__search--reset {
-    cursor: pointer;
-    border: none;
-    background: none;
-    color: black;
-    text-decoration: underline;
-}
-
-.main__search--reset:hover {
-    text-decoration: underline;
-    color: #002080;
-}
-
-.pagination {
-    text-align: right;
-    display: flex;
-    list-style: none;
-}
-
-.page-item{
-    background: #fff;
-    border: 1px solid gainsboro;
-    padding: 0 8px;
-}
-
-.page-link{
-    text-decoration: none;
-    color: #111;
-}
-
-.active {
-    background-color: black;
-}
-
-.active span{
-    color: white;
-}
-
 .error {
     list-style: none;
     color:red;
 }
-
-
-
-
 

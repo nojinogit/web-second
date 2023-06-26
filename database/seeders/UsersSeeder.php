@@ -15,23 +15,14 @@ class UsersSeeder extends Seeder
     {
         $param = [
         'id' => '1',
-        'name' => 'スズキフミヤ',
-        'email' => 'nojinonoue@yahoo.co.jp',
+        'name' => 'admin',
+        'email' => 'admin@admin',
         'email_verified_at' => now(),
         'password' => '123456789',
         'role' => '100',
         'created_at' => now(),
     ];DB::table('users')->insert($param);
 
-    $param = [
-        'id' => '2',
-        'name' => 'a',
-        'email' => 'a@a',
-        'email_verified_at' => now(),
-        'password' => '123456789',
-        'role' => '10',
-        'created_at' => now(),
-    ];DB::table('users')->insert($param);
     }
 
 }
