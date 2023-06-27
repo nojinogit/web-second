@@ -16,7 +16,7 @@
     </div>
     <div class="main__search">
         <h2>アカウント検索</h2>
-        <form action="/accountSearch" method="get">
+        <form action="{{route('accountSearch')}}" method="get">
             <div class="main__search--step">
                     <div class="main__search--step-title">
                         お名前
@@ -60,7 +60,7 @@
                 </tr>
                 @foreach($accounts as $account)
                 <tr>
-                    <form  method="POST" action="accountDelete">
+                    <form  method="POST" action="{{route('accountDelete')}}">
                         @csrf
                         <input type="hidden" name="id" value="{{$account->id}}">
                         <td>{{$account->name}}</td>
@@ -130,7 +130,7 @@
 
     <div class="main__search">
         <h2>店舗代表者検索</h2>
-        <form action="/representativeSearch" method="get">
+        <form action="{{route('representativeSearch')}}" method="get">
             <div class="main__search--step">
                     <div class="main__search--step-title">
                         お名前
@@ -171,7 +171,7 @@
             </tr>
             @foreach($representatives as $representative)
             <tr>
-                <form  method="POST" action="representativeDelete">
+                <form  method="POST" action="{{route('representativeDelete')}}">
                     @csrf
                     <input type="hidden" name="id" value="{{$representative->id}}">
                     <td>{{$representative->user->name}}</td>
@@ -203,7 +203,7 @@
                 <th>店舗</th>
             </tr>
             <tr>
-                <form  method="POST" action="/representativeAdd">
+                <form  method="POST" action="{{route('representativeAdd')}}">
                     @csrf
                     <td>
                         <select name="user_id">

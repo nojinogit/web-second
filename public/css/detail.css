@@ -28,6 +28,21 @@ p{
   display: block;
 }
 
+.shop-wrap__item-title {
+  display: flex;
+  align-items:center;
+}
+
+.arrow-left {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: 0 10px;
+  border-left: 4px solid blue;
+  border-bottom: 4px solid blue;
+  transform: rotate(45deg);
+}
+
 .shop-wrap__item-content {
   padding: 5%;
 }

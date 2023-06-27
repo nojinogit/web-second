@@ -9,8 +9,13 @@
 @section('content')
     <div class="container">
         <div class="flex__item shop-wrap">
-            <div class="shop-wrap__item" href="">
-                <h1>{{$shop->name}}</h1>
+            <div class="shop-wrap__item">
+                <div class="shop-wrap__item-title">
+                    <a href="#" onclick="history.back(); return false;">
+                        <div class="arrow-left"></div>
+                    </a>
+                    <h1>{{$shop->name}}</h1>
+                </div>
                 <img src="{{asset($shop->path)}}" alt="" class="shop-wrap__item-eyecatch">
                 <div class="shop-wrap__item-content">
                     <div>

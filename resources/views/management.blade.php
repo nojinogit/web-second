@@ -27,13 +27,13 @@
             <tr>
                 <td>{{$shop->shop->name}}</td>
                 <td>
-                    <form method="get" action="/shopUpdateIndex">
+                    <form method="get" action="{{route('shopUpdateIndex')}}">
                         <input type="hidden" value="{{$shop->shop->id}}" name="id">
                         <button type="submit">更新画面を開く</button>
                     </form>
                 </td>
                 <td>
-                    <form  method="get" action="/shopReserve">
+                    <form  method="get" action="{{route('shopReserve')}}">
                         <input type="hidden" name="id" value="{{$shop->shop->id}}">
                         <div class="main__search--step-input-day">
                             <input type="date" name="startDate">
@@ -52,20 +52,20 @@
     <div class="main__detail">
         <h2>店舗詳細</h2>
         <div class="flex__item">
-            <div class="store-wrap__item">
+            <div class="shop-wrap__item">
                 <h1>{{$shopUpdate->name}}</h1>
-                <img src="{{asset($shopUpdate->path)}}" alt="" class="store-wrap__item-eyecatch">
-                <div class="store-wrap__item-content">
+                <img src="{{asset($shopUpdate->path)}}" alt="" class="shop-wrap__item-eyecatch">
+                <div class="shop-wrap__item-content">
                     <div>
-                        <p class="store-wrap__item-content-tag">#{{$shopUpdate->area}}</p>
-                        <p class="store-wrap__item-content-tag">#{{$shopUpdate->category}}</p>
+                        <p class="shop-wrap__item-content-tag">#{{$shopUpdate->area}}</p>
+                        <p class="shop-wrap__item-content-tag">#{{$shopUpdate->category}}</p>
                     </div>
-                    <div class="flex__item store-wrap">
+                    <div class="flex__item shop-wrap">
                         <p>{{$shopUpdate->overview}}</p>
                     </div>
                 </div>
             </div>
-            <div class="store-wrap__item">
+            <div class="shop-wrap__item">
                 <form action="{{route('shopUpdate')}}" method="post"  enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" value="{{$shopUpdate->id}}" name="id">
@@ -146,7 +146,7 @@
                 <th>店舗画像</th>
             </tr>
             <tr>
-                <form  method="POST" action="/shopCreate" enctype="multipart/form-data">
+                <form  method="POST" action="{{route('shopCreate')}}" enctype="multipart/form-data">
                     @csrf
                     <td><input type="text" name="name"></td>
                     <td><input type="text" name="area"></td>

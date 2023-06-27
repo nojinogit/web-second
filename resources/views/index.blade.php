@@ -9,7 +9,7 @@
 @section('content')
     <div class="search">
         <div class="search-area">
-            <form action="/search" method="get">
+            <form action="{{route('search')}}" method="get">
             <select value="all area" id="area" name="area" <!--onchange="this.form.submit()"-->>
                 <option value="">all area</option>
                 @foreach($areas as $area)
@@ -31,18 +31,18 @@
         </div>
     </div>
     <div class="container">
-        <div class="flex__item store-wrap">
+        <div class="flex__item shop-wrap">
             @foreach($shops as $shop)
-            <div class="store-wrap__item" href="">
-                <img src="{{asset($shop->path)}}" alt="" class="store-wrap__item-eyecatch">
-                <div class="store-wrap__item-content">
+            <div class="shop-wrap__item" href="">
+                <img src="{{asset($shop->path)}}" alt="" class="shop-wrap__item-eyecatch">
+                <div class="shop-wrap__item-content">
                     <h2>{{$shop->name}}</h2>
                     <div>
-                        <p class="store-wrap__item-content-tag">#{{$shop->area}}</p>
-                        <p class="store-wrap__item-content-tag">#{{$shop->category}}</p>
+                        <p class="shop-wrap__item-content-tag">#{{$shop->area}}</p>
+                        <p class="shop-wrap__item-content-tag">#{{$shop->category}}</p>
                     </div>
-                    <div class="store-wrap__item-bottom">
-                        <form action="/detail/{{$shop->id}}" method="get" name="id">
+                    <div class="shop-wrap__item-bottom">
+                        <form action="{{route('detail',['id' => $shop->id])}}" method="get" name="id">
                             <button class="detail">詳しく見る</button>
                         </form>
                         @auth

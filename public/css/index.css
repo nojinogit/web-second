@@ -3,10 +3,6 @@ img {
   height: auto;
 }
 
-li {
-  list-style: none;
-}
-
 button{
   background-color: white;
   border: none;
@@ -63,11 +59,11 @@ button{
 }
 
 
-.store-wrap {
+.shop-wrap {
   margin-top: 20px;
 }
 
-.store-wrap__item {
+.shop-wrap__item {
   width: 23%;
   margin:10px;
   display: block;
@@ -75,24 +71,24 @@ button{
   border-radius:15px;
 }
 
-.store-wrap__item-content {
+.shop-wrap__item-content {
   background: #fff;
   border-radius: 0 0 15px 15px;
   padding: 20px;
 }
 
-.store-wrap__item-bottom{
+.shop-wrap__item-bottom{
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
 }
 
-.store-wrap__item-eyecatch {
+.shop-wrap__item-eyecatch {
   border-radius: 15px 15px 0 0;
   height: 200px;
 }
 
-.store-wrap__item-content-tag {
+.shop-wrap__item-content-tag {
   font-size: 14px;
   font-weight: bold;
   margin-top: 20px;

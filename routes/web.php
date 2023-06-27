@@ -25,16 +25,11 @@ use App\Http\Controllers\PaymentController;
 |
 */
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
-
-Route::get('/thanksRegister', function () {return view('/thanksRegister');});
-Route::get('/thanksReserve', function () {return view('/thanksReserve');});
-
 Route::get('/',[ShopController::class,'index'])->name('index');
 Route::get('/detail/{id}',[ShopController::class,'detail'])->name('detail');
 Route::get('/search',[SearchController::class,'search'])->name('search');
+Route::get('/thanksRegister', function () {return view('/thanksRegister');});
+Route::get('/thanksReserve', function () {return view('/thanksReserve');});
 Route::get('/representativeReserve/{id}',[MyPageController::class,'representativeReserve'])->name('representativeReserve');
 
 Route::middleware(['auth','verified'])->group(function () {

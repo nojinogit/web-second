@@ -30,7 +30,7 @@
                                 <div class="reserve-confirmation-area-head">
                                     <img src="{{ asset('svg/時計.svg')}}" alt="" id="clock">
                                     <span id="reserve-num">予約{{$loop->iteration}}</span>
-                                    <form action="/reserveDelete" method="post">
+                                    <form action="{{route('reserveDelete')}}" method="post">
                                         @csrf
                                         <input type="hidden" value="{{$reserve->id}}" name="id">
                                         <button class="button" type="submit">予約取り消し</button>
@@ -62,7 +62,7 @@
                                         <button class="button" type="submit">キャンセル</button>
                                     </form>
                                 </div>
-                                <form action="/reserveUpdate" method="post">
+                                <form action="{{route('reserveUpdate')}}" method="post">
                                     @csrf
                                     <input type="hidden" value="{{$reserve->id}}" name="id">
                                     <p><label>shop</label>&emsp;<span>{{$reserve->shop->name}}</span></p>
@@ -94,7 +94,7 @@
                                 <p class="shop-wrap__item-content-tag">#{{$shop->shop->category}}</p>
                             </div>
                             <div class="shop-wrap__item-bottom">
-                                <form action="/detail/{{$shop->shop->id}}" method="get" name="id">
+                                <form action="{{route('detail',['id'=>$shop->shop->id])}}" method="get" name="id">
                                     <button class="detail">詳しく見る</button>
                                 </form>
                                 <form class="favoriteDelete">
