@@ -31,6 +31,7 @@
                                     <img src="{{ asset('svg/時計.svg')}}" alt="" id="clock">
                                     <span id="reserve-num">予約{{$loop->iteration}}</span>
                                     <form action="{{route('reserveDelete')}}" method="post">
+                                        @method('delete')
                                         @csrf
                                         <input type="hidden" value="{{$reserve->id}}" name="id">
                                         <button class="button" type="submit">予約取り消し</button>
@@ -63,6 +64,7 @@
                                     </form>
                                 </div>
                                 <form action="{{route('reserveUpdate')}}" method="post">
+                                    @method('put')
                                     @csrf
                                     <input type="hidden" value="{{$reserve->id}}" name="id">
                                     <p><label>shop</label>&emsp;<span>{{$reserve->shop->name}}</span></p>
@@ -99,6 +101,7 @@
                                 </form>
                                 <form class="favoriteDelete">
                                     @csrf
+                                    @method('delete')
                                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                     <input type="hidden" name="shop_id" value="{{$shop->shop->id}}">
                                     <button type="submit">
@@ -124,7 +127,7 @@
             const shop_id=$(this).find('input[name="shop_id"]').val();
             $.ajax({
                 url: "{{ route('favoriteDelete') }}",
-                method: "POST",
+                method: "delete",
                 data: {user_id:user_id,shop_id:shop_id},
                 dataType: "json",
             }).done(function(res){

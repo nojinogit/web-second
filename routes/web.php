@@ -36,22 +36,22 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('/myPage',[MyPageController::class,'myPage'])->name('myPage');
     Route::get('/recommendationAdd',[MyPageController::class,'recommendationAdd'])->name('recommendationAdd');
     Route::post('/reserveAdd',[ReserveController::class,'reserveAdd'])->name('reserveAdd');
-    Route::post('/reserveDelete',[ReserveController::class,'reserveDelete'])->name('reserveDelete');
-    Route::post('/reserveUpdate',[ReserveController::class,'reserveUpdate'])->name('reserveUpdate');
+    Route::delete('/reserveDelete',[ReserveController::class,'reserveDelete'])->name('reserveDelete');
+    Route::put('/reserveUpdate',[ReserveController::class,'reserveUpdate'])->name('reserveUpdate');
     Route::post('/favoriteStore',[FavoriteController::class,'favoriteStore'])->name('favoriteStore');
-    Route::post('/favoriteDelete',[FavoriteController::class,'favoriteDelete'])->name('favoriteDelete');
-    Route::post('/reviewAdd',[ReviewController::class,'reviewAdd'])->name('reviewAdd');
-    Route::post('/reviewDelete',[ReviewController::class,'reviewDelete'])->name('reviewDelete');
+    Route::delete('/favoriteDelete',[FavoriteController::class,'favoriteDelete'])->name('favoriteDelete');
+    Route::put('/reviewAdd',[ReviewController::class,'reviewAdd'])->name('reviewAdd');
+    Route::delete('/reviewDelete',[ReviewController::class,'reviewDelete'])->name('reviewDelete');
     Route::get('/payment/create', [PaymentController::class, 'create'])->name('payment.create');
-    Route::post('/payment/store', [PaymentController::class, 'store'])->name('payment.store');
+    Route::put('/payment/store', [PaymentController::class, 'store'])->name('payment.store');
 });
 
 Route::group(['middleware' => ['auth', 'can:admin_only']], function () {
     Route::get('/accountIndex', [AccountController::class,'accountIndex'])->name('accountIndex');
     Route::get('/accountSearch', [AccountController::class,'accountSearch'])->name('accountSearch');
-    Route::post('/accountDelete', [AccountController::class,'accountDelete'])->name('accountDelete');
+    Route::delete('/accountDelete', [AccountController::class,'accountDelete'])->name('accountDelete');
     Route::post('/representativeAdd', [RepresentativeController::class,'representativeAdd'])->name('representativeAdd');
-    Route::post('/representativeDelete', [RepresentativeController::class,'representativeDelete'])->name('representativeDelete');
+    Route::delete('/representativeDelete', [RepresentativeController::class,'representativeDelete'])->name('representativeDelete');
     Route::get('/representativeSearch', [RepresentativeController::class,'representativeSearch'])->name('representativeSearch');
 });
 
@@ -61,7 +61,7 @@ Route::group(['middleware' => ['auth', 'can:manager_admin']], function () {
     Route::get('/shopUpdateIndex', [ManagementController::class,'shopUpdateIndex'])->name('shopUpdateIndex');
     Route::get('/shopReserve', [ManagementController::class,'shopReserve'])->name('shopReserve');
     Route::post('/shopCreate', [ManagementController::class,'shopCreate'])->name('shopCreate');
-    Route::post('/shopUpdate', [ManagementController::class,'shopUpdate'])->name('shopUpdate');
+    Route::put('/shopUpdate', [ManagementController::class,'shopUpdate'])->name('shopUpdate');
     Route::get('/informMail', [ManagementController::class,'informMail'])->name('informMail');
 });
 

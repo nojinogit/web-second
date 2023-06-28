@@ -80,6 +80,7 @@
                 </div>
                 @endif
                 <form action="{{route('reviewAdd')}}" method="post">
+                    @method('put')
                     @csrf
                     <div class="rate-form">
                         <input type="hidden" value="{{$reviewArea->id}}" name="id">
@@ -117,6 +118,7 @@
                 <p>{{$review->review}}</p>
                 @if(Auth::user()->id==$review->user->id)
                 <form action="{{route('reviewDelete')}}" method="post">
+                    @method('delete')
                     @csrf
                     <input type="hidden" value="{{$review->id}}" name="id">
                     <input type="hidden" value="{{$shop->id}}" name="shop_id">

@@ -75,6 +75,7 @@
                 <div class="card-header">Stripe決済</div>
                 <div class="card-body">
                     <form id="card-form" action="{{ route('payment.store') }}" method="POST">
+                        @method('put')
                         @csrf
                         <input type="hidden" name="id" value="{{$reserveData->id}}">
                         <input type="hidden" name="pay" value="{{$reserveData->hc}}000">

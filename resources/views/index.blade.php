@@ -54,7 +54,6 @@
                                 @endphp
                                 @if($favorite==1)
                                 <form class="favoriteDelete deleteOrigin{{$shop->id}}">
-                                    @csrf
                                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                     <input type="hidden" name="shop_id" value="{{$shop->id}}">
                                     <button type="submit">
@@ -63,7 +62,6 @@
                                 </form>
                                 @else
                                 <form class="favoriteStore storeOrigin{{$shop->id}}">
-                                    @csrf
                                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                     <input type="hidden" name="shop_id" value="{{$shop->id}}">
                                     <button type="submit">
@@ -72,7 +70,6 @@
                                 </form>
                                 @endif
                                 <form class="favoriteDelete delete{{$shop->id}} none">
-                                    @csrf
                                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                     <input type="hidden" name="shop_id" value="{{$shop->id}}">
                                     <button type="submit">
@@ -80,7 +77,6 @@
                                     </button>
                                 </form>
                                 <form class="favoriteStore store{{$shop->id}} none">
-                                    @csrf
                                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                     <input type="hidden" name="shop_id" value="{{$shop->id}}">
                                     <button type="submit">
@@ -104,7 +100,7 @@
             const shop_id=$(this).find('input[name="shop_id"]').val();
             $.ajax({
                 url: "{{ route('favoriteDelete') }}",
-                method: "POST",
+                method: "delete",
                 data: {user_id:user_id,shop_id:shop_id},
                 dataType: "json",
             }).done(function(res){

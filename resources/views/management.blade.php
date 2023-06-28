@@ -67,6 +67,7 @@
             </div>
             <div class="shop-wrap__item">
                 <form action="{{route('shopUpdate')}}" method="post"  enctype="multipart/form-data">
+                    @method('put')
                     @csrf
                     <input type="hidden" value="{{$shopUpdate->id}}" name="id">
                     <p><label for="">店舗名</label>&emsp;<input type="text" name="name" value="{{$shopUpdate->name}}"></p>

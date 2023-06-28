@@ -63,6 +63,29 @@ table{
     width: 100%;
 }
 
+.responsive {
+    display: none;
+}
+
+@media screen and (max-width : 768px){
+        .responsive {
+                display:block;
+            }
+        .default{
+            display:none;
+        }
+}
+
+.main__search--step-responsive {
+    margin: 20px;
+    text-align: center;
+}
+
+.main__search--step-title-responsive {
+    height: 40px;
+    line-height: 40px;
+}
+
 tr:first-child{
     border-bottom: 1px solid black;
 }
