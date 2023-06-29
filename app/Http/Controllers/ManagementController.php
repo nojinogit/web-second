@@ -73,7 +73,7 @@ class ManagementController extends Controller
 
     public function informMail(Request $request,Mailer $mailer){
 
-    $mailer->to($request->email)->send(new InformMail($request->name,$request->date,$request->time,$request->shop));
+    $mailer->to($request->email)->send(new InformMail($request->name,$request->date,$request->time,$request->shop,$request->hc,$request->recommendation));
 
     $shops=Representative::with('shop')->where('user_id',Auth::user()->id)->get();
     return view('/management',compact('shops'));

@@ -131,7 +131,7 @@
                 </div>
             </div>
         @endif
-        <table>
+        <table class="default">
             <tr>
                 <th>お名前</th>
                 <th>メールアドレス</th>
@@ -157,37 +157,33 @@
                 </form>
             </tr>
         </table>
-        <table class="responsive">
-            <tr>
-                <th>お名前</th>
-                <th>メールアドレス</th>
-                <th>パスワード</th>
-                <th>パスワード再入力</th>
-                <th>権限</th>
-            </tr>
-            <tr>
-                <form  method="POST" action="{{ route('register') }}">
+        <div class="responsive">
+            <form  method="POST" action="{{ route('register') }}">
                     @csrf
-                    <td><input type="text" name="name"  required autofocus autocomplete="name"></td>
-                    <td><input type="email" name="email" required autocomplete="username" ></td>
-                    <td><input type="password" name="password" required autocomplete="new-password" ></td>
-                    <td><input type="password" name="password_confirmation" required autocomplete="new-password"></td>
-                    <td>
-                        <select name="role">
-                        <option value="100">管理者</option>
-                        <option value="10">店舗代表者</option>
-                        <option value="1">一般ユーザ</option>
-                        </select>
-                    </td>
-                    <td><button type="submit">登録</button></td>
-                </form>
-            </tr>
-        </table>
+                    <p>お名前</p>
+                    <p><input type="text" name="name"  required autofocus autocomplete="name"></p>
+                    <p>メールアドレス</p>
+                    <p><input type="email" name="email" required autocomplete="username" ></p>
+                    <p>パスワード</p>
+                    <p><input type="password" name="password" required autocomplete="new-password" ></p>
+                    <p>パスワード再入力</p>
+                    <p><input type="password" name="password_confirmation" required autocomplete="new-password"></p>
+                    <p>権限</p>
+                    <p>
+                            <select name="role">
+                            <option value="100">管理者</option>
+                            <option value="10">店舗代表者</option>
+                            <option value="1">一般ユーザ</option>
+                            </select>
+                    </p>
+                    <p><button type="submit">登録</button></p>
+            </form>
+        </div>
     </div>
 
     <div class="main__search">
         <h2>店舗代表者検索</h2>
-        <form action="{{route('representativeSearch')}}" method="get">
+        <form action="{{route('representativeSearch')}}" method="get" class="default">
             <div class="main__search--step">
                     <div class="main__search--step-title">
                         お名前
@@ -204,6 +200,35 @@
                         店舗名
                     </div>
                     <div class="main__search--step-input">
+                        <select name="shop_id">
+                            <option value="">選択してください</option>
+                            @foreach($shops as $shop)
+                            <option value="{{$shop->id}}">{{$shop->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+            </div>
+            <div class="main__search--submit">
+                <input type="submit" value="検索">
+            </div>
+        </form>
+        <form action="{{route('representativeSearch')}}" method="get" class="responsive">
+            <div class="main__search--step-responsive">
+                    <div class="main__search--step-title-responsive">
+                        お名前
+                    </div>
+                    <div  class="main__search--step-input-responsive">
+                        <select name="user_id">
+                            <option value="">選択してください</option>
+                            @foreach($users as $user)
+                            <option value="{{$user->id}}">{{$user->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="main__search--step-title-responsive">
+                        店舗名
+                    </div>
+                    <div class="main__search--step-input-responsive">
                         <select name="shop_id">
                             <option value="">選択してください</option>
                             @foreach($shops as $shop)
@@ -255,7 +280,7 @@
             </div>
         @endif
         <div>
-        <table>
+        <table  class="default">
             <tr>
                 <th>お名前</th>
                 <th>店舗</th>
@@ -283,6 +308,30 @@
                 </form>
             </tr>
         </table>
+        <div class="responsive">
+            <form  method="POST" action="{{route('representativeAdd')}}">
+                @csrf
+                <p>お名前</p>
+                <p>
+                    <select name="user_id">
+                            <option value="">選択してください</option>
+                            @foreach($users as $user)
+                            <option value="{{$user->id}}">{{$user->name}}</option>
+                            @endforeach
+                    </select>
+                </p>
+                <p>店舗</p>
+                <p>
+                    <select name="shop_id">
+                            <option value="">選択してください</option>
+                            @foreach($shops as $shop)
+                            <option value="{{$shop->id}}">{{$shop->name}}</option>
+                            @endforeach
+                    </select>
+                </p>
+                <p><button type="submit">登録</button></p>
+            </form>
+        </div>
     </div>
 </main>
 

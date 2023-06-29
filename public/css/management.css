@@ -70,12 +70,38 @@ tr:first-child{
     color: red;
 }
 
+.responsive {
+    display: none;
+}
 
+@media screen and (max-width : 768px) {
+    .responsive {
+        display: block;
+        text-align: center;
+    }
 
+    .default {
+        display: none;
+    }
 
+    .main__search--step-input-day input {
+        width: 33%;
+    }
+}
 
+.main__search--table-area{
+    border-bottom: 1px solid black;
+}
 
+.main__search--table-area:last-child {
+    border: none;
+}
 
+.main__search--table-responsive{
+    border-bottom: 1px solid black;
+}
 
-
+.main__search--table-responsive:last-child {
+    border: none;
+}
 

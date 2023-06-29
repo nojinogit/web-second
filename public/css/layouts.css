@@ -29,6 +29,7 @@ html{
     background-color: rgb(0, 60, 255);
     border-radius: 3px;
     box-shadow: 2px 2px 2px;
+    cursor: pointer;
 }
 
 .nav_toggle i {

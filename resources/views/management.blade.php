@@ -17,7 +17,7 @@
 
     <div class="main__search">
         <h2>代表店舗</h2>
-        <table class="main__search--table">
+        <table class="main__search--table default">
             <tr>
                 <th>店舗名</th>
                 <th>店舗情報</th>
@@ -46,6 +46,33 @@
             </tr>
             @endforeach
         </table>
+        <div class="main__search--table responsive">
+            @foreach($shops as $shop)
+            <div class="main__search--table-area">
+                <p>店舗名</p>
+                <p>{{$shop->shop->name}}</p>
+                <p>店舗情報</p>
+                <p>
+                    <form method="get" action="{{route('shopUpdateIndex')}}">
+                        <input type="hidden" value="{{$shop->shop->id}}" name="id">
+                        <button type="submit">更新画面を開く</button>
+                    </form>
+                </p>
+                <p>予約状況</p>
+                <p>
+                    <form  method="get" action="{{route('shopReserve')}}">
+                        <input type="hidden" name="id" value="{{$shop->shop->id}}">
+                        <div class="main__search--step-input-day">
+                            <input type="date" name="startDate">
+                            <div class="to">～</div>
+                            <input type="date" name="endDate">
+                            <button type="submit">検索</button>
+                        </div>
+                    </form>
+                </p>
+            </div>
+            @endforeach
+        </div>
     </div>
 
     @isset($shopUpdate)
@@ -83,7 +110,7 @@
     @endisset
 
     @isset($reserves)
-    <div class="main__search">
+    <div class="main__search default">
         @foreach($reserves as $reserve)
         <h2>{{$reserve->shop->name}}</h2>
         @break
@@ -94,6 +121,7 @@
                 <th>時間</th>
                 <th>名前</th>
                 <th>人数</th>
+                <th>事前予約</th>
                 <th>キャンセル</th>
             </tr>
             @foreach($reserves as $reserve)
@@ -102,20 +130,53 @@
                 <td>{{$reserve->time}}</td>
                 <td>{{$reserve->user->name}}</td>
                 <td>{{$reserve->hc}}</td>
+                <td>{{$reserve->recommendation}}</td>
                 <td>{{$reserve->deleted_at}}</td>
                 <td>
                     <form action="{{route('informMail')}}" method="get">
                         <input type="hidden" value="{{$reserve->user->name}}" name="name">
                         <input type="hidden" value="{{$reserve->user->email}}" name="email">
                         <input type="hidden" value="{{$reserve->shop->name}}" name="shop">
+                        <input type="hidden" value="{{$reserve->hc}}" name="hc">
                         <input type="hidden" value="{{$reserve->date}}" name="date">
                         <input type="hidden" value="{{$reserve->time}}" name="time">
+                        <input type="hidden" value="{{$reserve->recommendation}}" name="recommendation">
                         <button type="submit">お知らせメール</button>
                     </form>
                 </td>
             </tr>
             @endforeach
         </table>
+    </div>
+    <div class="main__search responsive">
+        @foreach($reserves as $reserve)
+        <h2>{{$reserve->shop->name}}</h2>
+        @break
+        @endforeach
+        <div>
+            @foreach($reserves as $reserve)
+            <div class="main__search--table-responsive">
+                <p><label>日付</label>&emsp;{{$reserve->date}}</p>
+                <p><label>時間</label>&emsp;{{$reserve->time}}</p>
+                <p><label>名前</label>&emsp;{{$reserve->user->name}}</p>
+                <p><label>人数</label>&emsp;{{$reserve->hc}}</p>
+                <p><label>事前予約</label>&emsp;{{$reserve->recommendation}}</p>
+                <p><label>キャンセル</label>&emsp;{{$reserve->deleted_at}}</p>
+                <p>
+                    <form action="{{route('informMail')}}" method="get">
+                        <input type="hidden" value="{{$reserve->user->name}}" name="name">
+                        <input type="hidden" value="{{$reserve->user->email}}" name="email">
+                        <input type="hidden" value="{{$reserve->shop->name}}" name="shop">
+                        <input type="hidden" value="{{$reserve->hc}}" name="hc">
+                        <input type="hidden" value="{{$reserve->date}}" name="date">
+                        <input type="hidden" value="{{$reserve->time}}" name="time">
+                        <input type="hidden" value="{{$reserve->recommendation}}" name="recommendation">
+                        <button type="submit">お知らせメール</button>
+                    </form>
+                </p>
+            </div>
+            @endforeach
+        </div>
     </div>
     @endisset
 

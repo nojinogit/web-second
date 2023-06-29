@@ -17,16 +17,20 @@ class InformMail extends Mailable
     public $date;
     public $time;
     public $shop;
+    public $hc;
+    public $recommendation;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($name,$date,$time,$shop)
+    public function __construct($name,$date,$time,$shop,$hc,$recommendation)
     {
         $this->name=$name;
         $this->date=$date;
         $this->time=$time;
         $this->shop=$shop;
+        $this->hc=$hc;
+        $this->recommendation=$recommendation;
     }
 
     /**
