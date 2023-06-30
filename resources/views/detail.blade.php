@@ -98,7 +98,7 @@
                     </div>
                     <div>
                         <p>レビュー</p>
-                        <textarea name="review" id="" cols="100" rows="10"></textarea>
+                        <textarea name="review" cols="100" rows="10"></textarea>
                     </div>
                     <button type="submit">投稿する</button>
                 </form>

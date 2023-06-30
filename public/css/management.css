@@ -87,6 +87,16 @@ tr:first-child{
     .main__search--step-input-day input {
         width: 33%;
     }
+
+    .flex-item__responsive{
+        display: block;
+        max-width: 767px;
+    }
+
+    .shop-wrap__item{
+        width: 80%;
+        margin: 0 auto;
+    }
 }
 
 .main__search--table-area{

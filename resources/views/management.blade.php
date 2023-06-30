@@ -78,7 +78,7 @@
     @isset($shopUpdate)
     <div class="main__detail">
         <h2>店舗詳細</h2>
-        <div class="flex__item">
+        <div class="flex__item flex-item__responsive">
             <div class="shop-wrap__item">
                 <h1>{{$shopUpdate->name}}</h1>
                 <img src="{{asset($shopUpdate->path)}}" alt="" class="shop-wrap__item-eyecatch">
@@ -189,7 +189,6 @@
                 @endforeach
                 </ul>
                 @endif
-        <div>
             <div id="time"></div>
                 @if(session('message'))
                 <div class="message">
@@ -199,7 +198,7 @@
                 </div>
                 @endif
             </div>
-        <table>
+        <table class="default">
             <tr class="main__add--table-title">
                 <th>店舗名</th>
                 <th>都道府県</th>
@@ -219,6 +218,22 @@
                 </form>
             </tr>
         </table>
+        <div class="responsive">
+            <form  method="POST" action="{{route('shopCreate')}}" enctype="multipart/form-data">
+                @csrf
+                <p>店舗名</p>
+                <p><input type="text" name="name"></p>
+                <p>都道府県</p>
+                <p><input type="text" name="area"></p>
+                <p>ジャンル</p>
+                <p><input type="text" name="category"></p>
+                <p>店舗概要</p>
+                <p><textarea name="overview"></textarea></p>
+                <p>店舗画像</p>
+                <p><input type="file" name="image"></p>
+                <p><button type="submit">登録</button></p>
+            </form>
+        </div>
     </div>
 
 </main>

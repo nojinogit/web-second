@@ -23,7 +23,7 @@
         <div class="container-area">
             <div class="reserve-wrap">
                 <h2>予約状況</h2>
-                <div class="reserve-wrap__item" href="">
+                <div class="reserve-wrap__item">
                     @foreach($reserves as $reserve)
                         <div class="reserve-confirmation">
                             <div class="reserve-confirmation-area  {{$reserve->id}}">

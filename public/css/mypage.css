@@ -118,7 +118,7 @@ p {
 
 .shop-wrap {
   margin-top: 20px;
-  width: 50%;
+  width:50%;
 }
 
 .shop-wrap-area{
@@ -128,11 +128,11 @@ p {
 }
 
 .shop-wrap__item {
-  width: 45%;
   margin: 10px;
   display: block;
   box-shadow: 10px 10px 15px -10px;
   border-radius: 15px;
+  width: 350px;
 }
 
 .shop-wrap__item-eyecatch{
@@ -196,4 +196,45 @@ button {
 
 .none{
   display: none;
+}
+
+@media screen and (max-width : 768px) {
+
+  h2{
+    text-align: center;
+  }
+
+  .container-area {
+    display: block;
+  }
+
+  .qr-area{
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .qr-box{
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .reserve-wrap {
+    margin: 20px auto 0;
+    width: 80%;
+  }
+
+  .shop-wrap {
+    margin: 20px auto 0;
+    width:350px;
+  }
+
+  .shop-wrap__item {
+    width: 100%;
+    margin: 10px;
+    display: block;
+    box-shadow: 10px 10px 15px -10px;
+    border-radius: 15px;
+  }
 }
