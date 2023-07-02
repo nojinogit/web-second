@@ -60,11 +60,11 @@ button{
 
 
 .shop-wrap {
-  margin-top: 20px;
+  margin: 20px auto;
 }
 
 .shop-wrap__item {
-  width: 23%;
+  width: 300px;
   margin:10px;
   display: block;
   box-shadow: 10px 10px 15px -10px;
@@ -110,4 +110,48 @@ button{
 
 .none{
   display: none;
+}
+
+.responsive{
+  display: none;
+}
+
+@media screen and (max-width : 768px) {
+  .default{
+      display: none;
+  }
+
+  .responsive{
+    display:block;
+  }
+
+  .search-area input {
+    width: 100%;
+    border: 1px solid black;
+    height: 30px;
+  }
+
+  .search-area select {
+    width: 100%;
+    border: 1px solid black;
+    height: 30px;
+  }
+
+  #category {
+    width: 100%;
+  }
+
+  #area {
+    width: 100%;
+  }
+
+  .shop-wrap {
+    width: 100%;
+    margin: 20px auto;
+    text-align: center;
+  }
+
+  .shop-wrap__item{
+    margin: 20px auto;
+  }
 }

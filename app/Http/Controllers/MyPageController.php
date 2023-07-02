@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reserve;
-use App\Models\Shop;
 use App\Models\Favorite;
 use App\Models\Representative;
 use Illuminate\Support\Facades\Auth;
@@ -19,10 +18,6 @@ class MyPageController extends Controller
             $representatives=Representative::with('shop')->where('user_id',Auth::user()->id)->get();
             return view('/mypage',compact('reserves','shops','representatives'));
         }
-        //$shops　違う検索方法記録
-        //$shops = Shop::whereIn('id', function($query) {
-        //$query->select('shop_id')->from('favorites')->
-        //where('user_id', Auth::user()->id);})->get();
         return view('/mypage',compact('reserves','shops'));
     }
 

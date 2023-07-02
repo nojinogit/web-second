@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="search">
-        <div class="search-area">
+        <div class="search-area default">
             <form action="{{route('search')}}" method="get">
             <select value="all area" id="area" name="area" <!--onchange="this.form.submit()"-->>
                 <option value="">all area</option>
@@ -26,15 +26,40 @@
             @auth
             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
             @endauth
-            <button>search</button>
+            <button type="submit">search</button>
+            </form>
+        </div>
+        <div class="search-area responsive">
+            <form action="{{route('search')}}" method="get">
+            <p>
+                <select value="all area" id="area" name="area" <!--onchange="this.form.submit()"-->>
+                <option value="">all area</option>
+                @foreach($areas as $area)
+                <option value="{{$area->area}}">{{$area->area}}</option>
+                @endforeach
+                </select>
+            </p>
+            <p>
+                <select value="all genre" id="category"  name="category" <!--onchange="this.form.submit()"-->>
+                <option value="">all genre</option>
+                @foreach($categories as $category)
+                <option value="{{$category->category}}">{{$category->category}}</option>
+                @endforeach
+                </select>
+            </p>
+            <p><input type="search" placeholder="Search" id="search"  name="name"></p>
+            @auth
+            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+            @endauth
+            <p><button type="submit">search</button></p>
             </form>
         </div>
     </div>
     <div class="container">
         <div class="flex__item shop-wrap">
             @foreach($shops as $shop)
-            <div class="shop-wrap__item" href="">
-                <img src="{{asset($shop->path)}}" alt="" class="shop-wrap__item-eyecatch">
+            <div class="shop-wrap__item">
+                <img src="{{asset($shop->path)}}" class="shop-wrap__item-eyecatch">
                 <div class="shop-wrap__item-content">
                     <h2>{{$shop->name}}</h2>
                     <div>
