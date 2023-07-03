@@ -61,6 +61,7 @@ button{
 
 .shop-wrap {
   margin: 20px auto;
+  justify-content: space-around;
 }
 
 .shop-wrap__item {
