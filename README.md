@@ -29,12 +29,14 @@
 パスワードリセット処理
 
 #使用技術  
-nginx:1.21.1/
-php:/
-mysql:mysql:8.0.26/
+laravel sail/
+Laravel Framework 10.13.1/
+php:8.2.6/
+node:18.16.0/
+npm:9.6.7/
+mysql:8.0.32/
 phpmyadmin:/
-mailhog
-laravel:8.x/
+mailpit/
 jquery:3.4.1/
 
 #テーブル設計  
@@ -63,4 +65,5 @@ jquery:3.4.1/
 メールは Mailpit に届いています。
 
 ##備考  
-決済システム stripe にはアカウント作成後にテスト環境の公開キー・シークレットキーを.env ファイルの STRIPE_PUBLIC_KEY=　 STRIPE_SECRET_KEY=　に入れてコンテナを up しなおして下さい。
+決済システム stripe にはアカウント作成後にテスト環境の公開キー・シークレットキーを.env ファイルの STRIPE_PUBLIC_KEY=　 STRIPE_SECRET_KEY=　に入れてコンテナを up しなおして下さい。  
+スケジューラーのテストは『./vendor/bin/sail artisan schedule:work』にて行ってください。
